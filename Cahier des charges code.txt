@@ -1,0 +1,8 @@
+-affichage de sprites
+-gestion des controles
+-IA
+-gestion des collisions (et effets differents selon objet/obstacle rencontré)
+-le tout en temps reel
+-gestion des niveaux
+-gestion du score (facile)
+-gestion des vies
