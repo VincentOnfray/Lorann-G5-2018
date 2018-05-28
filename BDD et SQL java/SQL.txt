@@ -1,0 +1,12 @@
+/* Création de la table "niveau" penser à modifier l'adresse*/
+
+CREATE TABLE `lorann`.`Niveau` ( `ID_Niveau` INT(20) NOT NULL AUTO_INCREMENT, `contenu` text(300) NOT NULL, PRIMARY KEY (`ID_Niveau`)) ENGINE = MyISAM;
+
+LOAD DATA LOCAL INFILE "C:/Users/blenn/desktop/exia/UE5/projet/ressources/salles.txt"
+INTO TABLE lorann.niveau
+FIELDS
+TERMINATED BY '\n'
+LINES
+TERMINATED BY '\n'
+
+
