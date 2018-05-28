@@ -6,3 +6,16 @@
 -gestion des niveaux
 -gestion du score (facile)
 -gestion des vies
+
+
+
+Plan d'action:
+
+
+1 UML basique
+2 Interface fixe
+3 DAO (lecture fichier)
+4 Lier les Deux
+5 Ajouter mises à jours
+6 Controles
+7 C'est deja pas mal
