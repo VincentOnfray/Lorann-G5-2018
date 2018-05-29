@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.SQLException;
 
+import model.Demon;
 import model.Element;
 import model.dao.DAO;
 
@@ -13,12 +14,10 @@ import model.dao.DAO;
 public class Controller implements IController{
 
 	@Override
-	public void start(int i) throws SQLException {
+	public void start() throws SQLException {
 		// TODO Auto-generated method stub
+		System.out.println("ah");
 		
-		DAO etienne = new DAO();
-		
-		System.out.println(etienne.readMap(1));
 	}
 
 	@Override
@@ -28,7 +27,38 @@ public class Controller implements IController{
 	}
 
 	@Override
-	public void play() {
+	public void play(int map) throws SQLException {
+		// TODO Auto-generated method stub
+		DAO etienne = new DAO();
+		System.out.println(etienne.readMap(1));
+	}
+
+	@Override
+	public boolean chekAI(Demon demon) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateModel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void lost() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void won() {
 		// TODO Auto-generated method stub
 		
 	}
