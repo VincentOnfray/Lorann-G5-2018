@@ -1,6 +1,9 @@
 package main;
 
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import controller.Controller;
 
 
@@ -14,9 +17,11 @@ import controller.Controller;
 public abstract class Main {
 
     /**
+     * @throws SQLException 
+     * @throws IOException 
      * 
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws SQLException, IOException {
     	Controller cont= new Controller();
     	cont.start(5);
         

@@ -1,6 +1,10 @@
 package controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import model.Element;
+import model.dao.DAO;
 
 
 
@@ -10,11 +14,13 @@ import model.Element;
 public class Controller implements IController{
 
 	@Override
-	public void start(int i) {
+	public void start(int i) throws SQLException {
 		// TODO Auto-generated method stub
 		System.out.println("lol");
 		Element el = new Element();
 		el.testouille();
+		DAO etienne = new DAO();
+		etienne.readMap(1);
 	}
 
 	@Override
