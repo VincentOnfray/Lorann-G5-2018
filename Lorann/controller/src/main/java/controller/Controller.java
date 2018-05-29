@@ -16,15 +16,14 @@ public class Controller implements IController{
 	@Override
 	public void start(int i) throws SQLException {
 		// TODO Auto-generated method stub
-		System.out.println("lol");
-		Element el = new Element();
-		el.testouille();
+		
 		DAO etienne = new DAO();
-		etienne.readMap(1);
+		
+		System.out.println(etienne.readMap(1).length());
 	}
 
 	@Override
-	public int chooseMap() {
+	public int chooseMap() { //opens menu for user to choose what level to play
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -13,7 +13,7 @@ public class DAO {
         String host = "jdbc:mysql://localhost:3306/lorann?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String uName = "root";
         String uPass= "";
-
+        String ret = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
     } catch (ClassNotFoundException e) {
@@ -23,14 +23,15 @@ public class DAO {
         Connection co = DriverManager.getConnection(host,uName,uPass);
         java.sql.Statement state = co.createStatement();
        
-        ResultSet result = state.executeQuery("SELECT contenu FROM niveau WHERE ID_Niveau= 5");
+        ResultSet result = state.executeQuery("SELECT contenu FROM niveau WHERE ID_Niveau= "+map);
         
         while(result.next()) {
-            System.out.println(result.getString("contenu").length());
-            
+        	ret = result.getString("contenu");
+           
         }
         
-        return "22";
+        return ret;
+       
 	}
 	
 }

@@ -5,9 +5,7 @@ public class Element {
 	private boolean blocking;
 	private boolean kills;
 	
-	public void testouille() {
-		System.out.println("ca marche");
-	}
+
 
 	public String getSprite() {
 		return sprite;
