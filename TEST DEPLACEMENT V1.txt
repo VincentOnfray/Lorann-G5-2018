@@ -1,0 +1,120 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JFrame;
+
+public class move extends JFrame implements KeyListener {
+	//Création Fenêtre
+			//Création d'un pannel
+	public static stari pannel = new stari();
+	public move() {
+		
+		
+		
+		//Fermer la Fenêtre
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		// Taille Fenêtre
+		this.setSize(800,600);
+		// Centrer La Fenêtre
+		this.setLocationRelativeTo(null);
+		setFocusable(true);
+		addKeyListener(this);
+		this.setContentPane(pannel);
+		//Rendre la Fenêtre visible
+		this.setVisible(true);	
+	
+		
+					
+	}
+
+	@Override
+	public void keyPressed(KeyEvent evt) {
+		if(evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+			move.pannel.setaStariX(move.pannel.getaStariX() + 10);
+		}	
+		if(evt.getKeyCode() == KeyEvent.VK_LEFT) {
+			move.pannel.setaStariX(move.pannel.getaStariX() - 10);
+		}
+		
+		if(evt.getKeyCode() == KeyEvent.VK_UP) {
+			move.pannel.setaStariY(move.pannel.getaStariY() - 10);
+		}
+		
+		if(evt.getKeyCode() == KeyEvent.VK_DOWN) {
+			move.pannel.setaStariY(move.pannel.getaStariY() + 10);
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+import javax.swing.JPanel;
+
+public class stari extends JPanel {
+	private int aStariX = 50;
+	private int aStariY = 50;
+	
+	public void paintComponent(Graphics g) {
+		try {
+			BufferedImage imgbackground = ImageIO.read(new File("C:/Users/Keryann/eclipse-workspace/FondBlanc.jpg"));
+			g.drawImage(imgbackground, 0, 0, null);
+			BufferedImage img = ImageIO.read(new File("C:/Users/Keryann/eclipse-workspace/Right(120-1).png"));
+			g.drawImage(img, aStariX, aStariY, null);
+			repaint();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int getaStariX() {
+		return aStariX;
+	}
+	
+	public int getaStariY() {
+		return aStariY;
+	}
+	public void setaStariX(int aStariX) {
+		this.aStariX = aStariX;
+	}
+	public void setaStariY(int aStariY) {
+		this.aStariY = aStariY;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		move mo = new move();
+
+	}
+
+}
