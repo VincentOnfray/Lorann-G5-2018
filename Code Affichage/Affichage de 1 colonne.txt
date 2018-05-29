@@ -1,0 +1,120 @@
+//Classe Main
+
+package testing_zone;
+
+import java.io.IOException;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException  {
+	
+		Fenetre fen = new Fenetre();
+	
+		// DA IMAGES
+	    
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\bone.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\v_bone.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\v_bone.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\v_bone.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\bone.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    
+	    
+	    
+	    /* fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\h_bone.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\bourse.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\h_bone.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage()));
+	    fen.add(new ImageComponent(new ImageIcon("C:\\Users\\Utilisateur\\Pictures\\sprite\\void.png").getImage())); */
+	   
+	    fen.setVisible(true);
+	}
+
+}
+
+//Classe Fenetre
+
+package testing_zone;
+
+import java.awt.GridLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Color;
+
+public class Fenetre extends JFrame {
+	
+	  public Fenetre(){
+		
+		// DA WINDOW
+		  
+	    this.setTitle("Test GridLayout");
+
+	    this.setSize(640, 352);
+
+	    this.setLocationRelativeTo(null);
+
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             
+
+	    this.setVisible(true);
+	    
+	    this.setResizable(false);
+	    
+	    this.setVisible(true);
+	    
+	    // DA GRID
+	    
+	    GridLayout gl = new GridLayout();
+
+	    gl.setColumns(20);
+
+	    gl.setRows(11);
+
+	    this.setLayout(gl);
+	    
+	    // DA BACKGROUND
+	    
+	    /* JPanel pan = new JPanel();
+	    
+	    pan.setBackground(Color.BLACK);
+	    
+	    this.setContentPane(pan);               
+
+	    this.setVisible(true); */
+	    
+	    
+	  }
+
+	}
+
+//Classe ImageComponent
+
+package testing_zone;
+
+public class ImageComponent extends java.awt.Component 
+{ 
+	private static final long serialVersionUID = 1;
+	private final java.awt.Image img;
+	public ImageComponent(java.awt.Image image) 
+		{ 
+			img = image; 
+		} 
+	@Override 
+	public void paint(java.awt.Graphics g) 
+		{ 
+			g.drawImage(img, 0, 0, 32, 32, null, null); 
+		} 
+}
