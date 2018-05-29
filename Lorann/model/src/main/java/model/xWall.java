@@ -1,7 +1,7 @@
 package model;
 
-public class xWall extends Obstacle{
-	public xWall() {
+public class XWall extends Obstacle{
+	public XWall() {
 		super("z");
 	}
 

@@ -4,14 +4,14 @@ public class Factory {
 	public CloseDoor newCloseDoor() {
 		return new CloseDoor();
 	}
-	public yWall newyWall() {
-		return new yWall();
+	public YWall newyWall() {
+		return new YWall();
 	}
-	public xWall newxWall() {
-		return new xWall();
+	public XWall newxWall() {
+		return new XWall();
 	}
-	public ballWall newballWall() {
-		return new ballWall();
+	public BallWall newballWall() {
+		return new BallWall();
 	}
 	public Player newPlayer() {
 		return new Player();

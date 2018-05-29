@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class DAO {
 
-	public String readMap(int map) throws SQLException {
+	public String readMap(String map) throws SQLException {
 		
 
         String host = "jdbc:mysql://localhost:3306/lorann?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
