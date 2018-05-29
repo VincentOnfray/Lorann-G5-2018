@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import model.Element;
@@ -19,7 +18,7 @@ public class Controller implements IController{
 		
 		DAO etienne = new DAO();
 		
-		System.out.println(etienne.readMap(1).length());
+		System.out.println(etienne.readMap(1));
 	}
 
 	@Override
