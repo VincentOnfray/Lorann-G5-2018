@@ -1,6 +1,6 @@
 -affichage de sprites
 -gestion des controles
--IA
+-IA (random)
 -gestion des collisions (et effets differents selon objet/obstacle rencontré)
 -le tout en temps reel
 -gestion des niveaux

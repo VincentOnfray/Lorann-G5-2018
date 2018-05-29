@@ -1,7 +1,10 @@
 package controller;
 
 import model.Element;
-import view.Frame;
+
+
+
+
 
 
 public class Controller implements IController{
@@ -12,8 +15,6 @@ public class Controller implements IController{
 		System.out.println("lol");
 		Element el = new Element();
 		el.testouille();
-		Frame fr = new Frame();
-		fr.frameTest();
 	}
 
 	@Override
