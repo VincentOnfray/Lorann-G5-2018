@@ -128,8 +128,8 @@ public class Controller implements IController{
 		
 		
 		
-		//System.out.println(map.getCell(19, 2).getClass());		//tests Should return "YWall" on map 1
-		//System.out.println(map.getCell(5, 5).getClass());			//Should return "Demon" on map 1
+		System.out.println(map.getCell(19, 2).getClass());		//tests Should return "YWall" on map 1
+		System.out.println(map.getCell(5, 5).getClass());			//Should return "Demon" on map 1
 		
 		return map;
 	}
