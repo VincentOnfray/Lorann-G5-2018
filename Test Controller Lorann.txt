@@ -1,0 +1,78 @@
+package controller;
+import javax.swing.JFrame;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class JFrameLorann extends JFrame implements KeyListener {
+ /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	public JFrameLorann() {
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent evt) {
+		if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+			System.out.println("RIGHT");
+		}
+		if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+			System.out.println("LEFT");;
+		}
+		if (evt.getKeyCode() == KeyEvent.VK_UP) {
+			System.out.println("UP");
+		}
+		if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+			System.out.println("DOWN");
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
+
+
+package controller;
+
+public class ControllerLorann {
+
+		private String lorannOrder = "null";
+
+
+		public String getlorannOrder() {
+			return lorannOrder;
+		}
+
+		public void setlorannOrder(String lorannOrder) {
+			this.lorannOrder = lorannOrder;
+		}
+		
+		
+		
+}
+
+
+package controller;
+
+public class main {
+
+	public static void main(String[] args) {
+		JFrameLorann frame = new JFrameLorann();
+		
+	}
+
+}
