@@ -1,7 +1,7 @@
 package model;
 
 public class Demon extends MobileElement{
-	public Demon() {
-		super("z",true,true);
+	public Demon(int X, int Y) {
+		super("z",true,true, X,Y);
 	}
 }

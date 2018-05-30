@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Console {
 	
-	public String whatMap() {
+	public String whatMap() { // placeholder menu to choose a map
 		String choice;
 		System.out.println("what level do you want to play? (1 to 5 or r for random)");
 		Scanner sc = new Scanner(System.in);
@@ -27,6 +27,7 @@ public class Console {
 			 return "1";
 		 }
 		 else {
+			 System.out.println("random it is then");
 			 double r = Math.random()%5;
 			 
 			 
