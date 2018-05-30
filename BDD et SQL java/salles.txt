@@ -68,3 +68,151 @@ IeO---Oeee1O--Oeeeee;
 OYeeeee1O--Oeeeeeeee;
 eO-----OOeeeeeeeeeee;
 eeeeeeeeeeeeeeeeeeee;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ceci est un dépotoir case 1: //up Y-1
+			if (demon.getY()==0) {
+				possible = false;
+			}
+			else if(map.getCell(demon.getX(),demon.getY()-1).getBlocking()) {
+				possible = false;
+						}
+			
+			
+			else if(demon.getX()==map.getLorann().getX() && demon.getY()-1 == map.getLorann().getY()){
+				System.out.println("omnomnom");
+				this.finished = true;
+				System.out.println("got Murdered");
+				possible = true;
+			}
+			
+			else {possible = true;}
+				/*switch (map.getCell(demon.getX(),demon.getY()-1).getClass().toString()) {
+				case "class model.Player":
+					this.finished = true;
+					System.out.println("got Murdered");
+					return true;
+				case "class model.OpenDoor":
+					return false;
+				case "class model.Cristal":
+					return false;
+					default:
+					return true;
+					}*/
+				
+			
+			
+		case 2://down  Y+1
+			if (demon.getY()==12) {
+				possible = false;
+			}
+			else if(map.getCell(demon.getX(),demon.getY()+1).getBlocking()) {
+				possible = false;
+						}
+			
+			
+			
+				else if(demon.getX()==map.getLorann().getX() && demon.getY()+1 == map.getLorann().getY()){
+					System.out.println("omnomnom");
+					this.finished = true;
+					System.out.println("got Murdered");
+					possible = true;
+				}
+				else {possible = true;}
+				
+				/*{
+			}
+				switch (map.getCell(demon.getX(),demon.getY()+1).getClass().toString()) {
+				case "class Player":
+					this.finished = true;
+					System.out.println("got munched");
+					return true;
+				case "class OpenDoor":
+					return false;
+				case "class Cristal":
+					return false;
+					default:
+					return true;
+					}
+				}*/
+			
+			
+		case 3: //left X-1
+			
+			if (demon.getX()==0) {
+				possible = false;
+			}
+			if(map.getCell(demon.getX()-1,demon.getY()).getBlocking()) {
+				possible = false;
+						}
+			else if(demon.getX()-1 ==map.getLorann().getX() && demon.getY() == map.getLorann().getY()){
+				System.out.println("omnomnom");
+				this.finished = true;
+				System.out.println("got Murdered");
+				possible = true;
+			}
+			else {possible = true;}
+			
+			/*else {
+				switch (map.getCell(demon.getX()-1,demon.getY()).getClass().toString()) {
+				case "class Player":
+					this.finished = true;
+					System.out.println("got munched");
+					return true;
+				case "class OpenDoor":
+					return false;
+				case "class Cristal":
+					return false;
+					default:
+					return true;
+					}
+				}*/
+			
+			
+		case 4: //right X+1
+			if (demon.getX()==19) {
+				possible = false;
+			}
+			else if(map.getCell(demon.getX()+1,demon.getY()).getBlocking()) {
+				possible = false;
+						}
+			
+			
+			/*else {
+				switch (map.getCell(demon.getX()+1,demon.getY()).getClass().toString()) {
+				case "class Player":
+					this.finished = true;
+					System.out.println("got munched");
+					return true;
+				case "class OpenDoor":
+					return false;
+				case "class Cristal":
+					return false;
+					default:
+					return true;
+				}
+			}
+			
+				default:
+				return false;
+			}	*/
+			
+			else if(demon.getX()+1 ==map.getLorann().getX() && demon.getY() == map.getLorann().getY()){
+				System.out.println("omnomnom");
+				this.finished = true;
+				System.out.println("got Murdered");
+				possible = true;
+			}
+			else {possible = true;}	
