@@ -13,33 +13,99 @@ import view.*;
 
 
 public class Controller implements IController{
-
+	
+	private boolean finished;
+	 
 	@Override
 	public void start() throws SQLException {
 		// TODO Auto-generated method stub
-		
+		this.finished = false;
 		this.play( this.chooseMap()); //allows to choose map and start the game loop
 		
 	}
 
+	
+	@Override 
+	public void loop(Map map) {//the main game loop
+		this.display();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.updateModel(map);
+		
+	}
+	
+	@Override
+	public void play(String mapchoice) throws SQLException{
+		// TODO Auto-generated method stub
+		DAO etienne = new DAO();
+		
+		Map map = this.createMap(etienne.readMap(mapchoice));
+		while (!this.finished) {
+			this.loop(map);
+		}
+		
+		
+		}
+	
 	@Override
 	public String chooseMap() { //opens menu for user to choose what level to play
-		// TODO Auto-generated method stub
+	
 		Console menu = new Console(); //simple Console menu for now, will be enhanced if time allows
 		
 		return menu.whatMap();
 	}
 
 	@Override
-	public void play(String mapchoice) throws SQLException{
+	public boolean chekAI(Map map,Demon demon, int i) {
 		// TODO Auto-generated method stub
-		DAO etienne = new DAO();
-		this.createMap(etienne.readMap(mapchoice));
+		String classe;
+		switch (i) {
+		case 1: //up Y-1
+			classe = map.getCell(demon.getX(), demon.getY()-1).getClass().toString();
+			switch (classe) {
+			case "classe BallWall" :
+				break;
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				default:
+			}
+			
+			break;
+		case 2://down  Y+1
+			
+			break;
+		case 3: //left X-1
+			
+			break;
+		case 4: //right X+1
+			
+			break;
+			
+			
+			
+			
+			default:
+		
+		
+		
 		}
-
-	@Override
-	public boolean chekAI(Demon demon) {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
 		return false;
 	}
 
@@ -50,22 +116,64 @@ public class Controller implements IController{
 	}
 
 	@Override
-	public void updateModel() { //TO DO
-		// TODO Auto-generated method stub
-		
+	public void updateModel(Map map) { //TO DO
+		int n = map.getnDemon()-1; //Demonlist's 1st demon is number 0, not 1
+		for(int i = 0; i <n; i++) { 
+			double r = Math.random()%5; //generate a random movement
+			switch ((int)r) {
+			
+			
+			case 1: //moveUp (Y-1)
+				if (this.chekAI(map,map.getDemon(i), 1)){
+					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+					map.getDemon(i).setY(map.getDemon(i).getY()-1);
+					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), map.getDemon(i));
+				}
+				else {
+					
+				}
+				
+				break;
+			case 2: //moveDown (Y+1)
+				if (this.chekAI(map,map.getDemon(i), 2 )){
+				map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+				map.getDemon(i).setY(map.getDemon(i).getY()+1);
+				map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), map.getDemon(i));}
+				
+				else {
+					
+				}
+				break;
+			case 3: //move Left (X-1)
+				
+				if (this.chekAI(map,map.getDemon(i), 3 )){
+					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+					map.getDemon(i).setX(map.getDemon(i).getX()-1);
+					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), map.getDemon(i));}
+					
+					else {
+						
+					}
+				break;
+				
+			case 4:    //move right (X+1)
+
+				if (this.chekAI(map,map.getDemon(i), 4 )){
+					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+					map.getDemon(i).setX(map.getDemon(i).getX()+1);
+					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), map.getDemon(i));}
+					
+					else {
+						
+					}
+				break;
+				default:					
+			}
+		}
+		return;
 	}
 
-	@Override
-	public void lost() { //TO DO
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void won() { //TO DO
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public Map createMap(String mapString) {   //Done
@@ -73,14 +181,13 @@ public class Controller implements IController{
 		Map map = new Map();
 		
 		StringReader sr = new StringReader(mapString);
-		for(int Y = 0; Y<13; Y++ ) {
-		for(int X = 0;X<21;X++) {
-			System.out.println(X);
+		for(int Y = 0; Y<13; Y++ ) { //
+			
+		for(int X = 0;X<21;X++) { 
 			
 			try {
 				switch ((char)sr.read()) {
 				case ';':
-					System.out.println("retour");
 					break;
 				case 'O':
 					map.setCell(X,Y,new BallWall());
@@ -95,7 +202,8 @@ public class Controller implements IController{
 					map.setCell(X,Y,new Gold());
 					break;
 				case 'D':
-					map.setCell(X,Y,new Demon());
+					map.setCell(X,Y,new Demon(X,Y));
+					map.setnDemon(map.getnDemon()+1);
 					break;
 				case 'Q':
 					map.setCell(X,Y,new Cristal());
@@ -104,8 +212,8 @@ public class Controller implements IController{
 					map.setCell(X,Y,new CloseDoor());
 					break;
 				case '@':
-					map.setCell(X, Y, new Player()); //PlaceHolder, Lorann needs to be instantiated earlier
-					
+					map.setLorann(new Player(X,Y));
+					map.setCell(X, Y,map.getLorann() ); //PlaceHolder, Lorann needs to be instantiated earlier
 					break;
 				case '+':
 					map.setCell(X,Y,new Grave());
@@ -125,14 +233,21 @@ public class Controller implements IController{
 	}
 		}
 		
-		
-		
-		System.out.println(map.getCell(19, 2).getClass());		//tests Should return "YWall" on map 1
-		System.out.println(map.getCell(5, 5).getClass());			//Should return "Demon" on map 1
-		
 		return map;
 	}
 
+	
+	@Override
+	public void lost() { //TO DO
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void won() { //TO DO
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class DAO {
 
-	public String readMap(String map) throws SQLException {
+	public String readMap(String map) throws SQLException { //cette methode cherche une carte 
 		
 
         String host = "jdbc:mysql://localhost:3306/lorann?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -24,7 +24,7 @@ public class DAO {
         java.sql.Statement state = co.createStatement();
        
       
-        ResultSet result = state.executeQuery("CALL pickMap("+map+")");
+        ResultSet result = state.executeQuery("CALL pickMap("+map+")");  
         while(result.next()) {
         	ret = result.getString("contenu");
            

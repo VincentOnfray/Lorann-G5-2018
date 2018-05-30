@@ -1,6 +1,8 @@
 package model;
 
 public class MobileElement extends Element{
+	private int X;
+	private int Y;
 	public void MoveUp() {
 		
 	}
@@ -16,8 +18,26 @@ public class MobileElement extends Element{
 	public MobileElement(){
 		
 	}
-	public MobileElement(String sprite, boolean blocking, boolean deadly) {
+	public void setX(int X) {
+		this.X = X;
+	}
+	public void setY(int Y) {
+		this.Y = Y;
+	}
+	
+	public int getX() {
+		return this.X;
+	}
+	
+	public int getY() {
+		return this.Y;
+	}
+	
+	
+	public MobileElement(String sprite, boolean blocking, boolean deadly, int X, int Y) {
 		super(sprite, blocking, deadly);
+		this.X = X;
+		this.Y = Y;
 	}
 	
 }
