@@ -50,36 +50,37 @@ public class Controller implements IController{
 	}
 
 	@Override
-	public void updateModel() {
+	public void updateModel() { //TO DO
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void lost() {
+	public void lost() { //TO DO
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void won() {
+	public void won() { //TO DO
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Map createMap(String mapString) {
+	public Map createMap(String mapString) {   //Done
 		// TODO Auto-generated method stub
 		Map map = new Map();
 		
 		StringReader sr = new StringReader(mapString);
 		for(int Y = 0; Y<13; Y++ ) {
 		for(int X = 0;X<21;X++) {
-			
+			System.out.println(X);
 			
 			try {
 				switch ((char)sr.read()) {
 				case ';':
+					System.out.println("retour");
 					break;
 				case 'O':
 					map.setCell(X,Y,new BallWall());
@@ -95,8 +96,6 @@ public class Controller implements IController{
 					break;
 				case 'D':
 					map.setCell(X,Y,new Demon());
-					
-				
 					break;
 				case 'Q':
 					map.setCell(X,Y,new Cristal());
@@ -128,8 +127,8 @@ public class Controller implements IController{
 		
 		
 		
-		//System.out.println(map.getCell(19, 2).getClass());		//tests Should return "YWall" on map 1
-		//System.out.println(map.getCell(5, 5).getClass());			//Should return "Demon" on map 1
+		System.out.println(map.getCell(19, 2).getClass());		//tests Should return "YWall" on map 1
+		System.out.println(map.getCell(5, 5).getClass());			//Should return "Demon" on map 1
 		
 		return map;
 	}

@@ -23,8 +23,8 @@ public class DAO {
         Connection co = DriverManager.getConnection(host,uName,uPass);
         java.sql.Statement state = co.createStatement();
        
-        ResultSet result = state.executeQuery("SELECT contenu FROM niveau WHERE ID_Niveau= "+map);
-        
+      
+        ResultSet result = state.executeQuery("CALL pickMap("+map+")");
         while(result.next()) {
         	ret = result.getString("contenu");
            

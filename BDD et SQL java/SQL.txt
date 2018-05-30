@@ -10,3 +10,15 @@ LINES
 TERMINATED BY '\n'
 
 
+
+DELIMITER |
+CREATE PROCEDURE pickMap(IN n INT)
+
+BEGIN
+ 	SELECT contenu 
+	FROM niveau
+	WHERE ID_Niveau = n;
+END |
+DELIMITER ;
+
+
