@@ -46,6 +46,9 @@ public class Map {
     public void setnDemon(int nb) {
     	this.nDemon = nb;
     }
+    public void setDemon(int i, Demon demon) {
+    	this.demonList[i] = demon;
+    }
 
 }
 

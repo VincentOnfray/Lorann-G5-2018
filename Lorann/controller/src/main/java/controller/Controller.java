@@ -15,28 +15,25 @@ import view.*;
 public class Controller implements IController{
 	
 	private boolean finished;
+	private Factory fact;
 	 
 	@Override
 	public void start() throws SQLException {
 		// TODO Auto-generated method stub
 		this.finished = false;
+		this.fact = new Factory();
 		this.play( this.chooseMap()); //allows to choose map and start the game loop
 		
 	}
-
 	
-	@Override 
-	public void loop(Map map) {//the main game loop
-		this.display();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.updateModel(map);
+	@Override
+	public String chooseMap() { //opens menu for user to choose what level to play
+	
+		Console menu = new Console(); //simple Console menu for now, will be enhanced if time allows
 		
+		return menu.whatMap();
 	}
+	
 	
 	@Override
 	public void play(String mapchoice) throws SQLException{
@@ -52,65 +49,200 @@ public class Controller implements IController{
 		}
 	
 	@Override
-	public String chooseMap() { //opens menu for user to choose what level to play
-	
-		Console menu = new Console(); //simple Console menu for now, will be enhanced if time allows
+	public Map createMap(String mapString) {   //Done
+		// TODO Auto-generated method stub
+		Map map = new Map();
 		
-		return menu.whatMap();
+		StringReader sr = new StringReader(mapString);
+		for(int Y = 0; Y<13; Y++ ) { //
+			
+		for(int X = 0;X<21;X++) { 
+			
+			try {
+				switch ((char)sr.read()) {
+				case ';':
+					break;
+				case 'O':
+					map.setCell(X,Y,fact.newballWall());
+					break;
+				case '-':
+					map.setCell(X,Y,fact.newxWall());
+					break;
+				case 'I':
+					map.setCell(X,Y,fact.newyWall());
+					break;
+				case '1':
+					map.setCell(X,Y,fact.newGold());
+					break;
+				case 'D':
+					map.setDemon(map.getnDemon(), new Demon(X,Y));
+					map.setCell(X,Y,map.getDemon(map.getnDemon()));
+					map.setnDemon(map.getnDemon()+1);
+					break;
+				case 'Q':
+					map.setCell(X,Y,fact.newCristal());
+					break;
+				case 'Y':
+					map.setCell(X,Y,fact.newCloseDoor());
+					break;
+				case '@':
+					map.setLorann(new Player(X,Y));
+					map.setCell(X, Y,map.getLorann() ); //PlaceHolder, Lorann needs to be instantiated earlier
+					break;
+				case '+':
+					map.setCell(X,Y,fact.newGrave());
+					break;
+				case 'e':
+					map.setCell(X,Y,fact.newGroung());
+					break;
+					
+				default:
+					map.setCell(X,Y,fact.newGroung());
+					
+}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
+		}
+		
+		return map;
+	}
+
+
+	
+	@Override 
+	public void loop(Map map) {//the main game loop
+		this.display(map);
+		
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.updateModel(map);
+		
+	}
+	
+	
+	
+	
 
 	@Override
 	public boolean chekAI(Map map,Demon demon, int i) {
 		// TODO Auto-generated method stub
 		String classe;
+		System.out.println("a demon is in " +demon.getX()+" "+demon.getY());
 		switch (i) {
 		case 1: //up Y-1
-			classe = map.getCell(demon.getX(), demon.getY()-1).getClass().toString();
-			switch (classe) {
-			case "classe BallWall" :
-				break;
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				default:
+			if (demon.getY()==0) {
+				return false;
 			}
+			if(map.getCell(demon.getX(),demon.getY()-1).getBlocking()) {
+				return false;
+						}
 			
-			break;
+			
+			else {
+				switch (map.getCell(demon.getX(),demon.getY()-1).getClass().toString()) {
+				case "class Player":
+					this.finished = true;
+					System.out.println("got munched");
+					return true;
+				case "class OpenDoor":
+					return false;
+				case "class Cristal":
+					return false;
+					default:
+					return true;
+					}
+				}
+			
+			
 		case 2://down  Y+1
+			if (demon.getY()==12) {
+				return false;
+			}
+			if(map.getCell(demon.getX(),demon.getY()+1).getBlocking()) {
+				return false;
+						}
 			
-			break;
+			
+			else {
+				switch (map.getCell(demon.getX(),demon.getY()+1).getClass().toString()) {
+				case "class Player":
+					this.finished = true;
+					System.out.println("got munched");
+					return true;
+				case "class OpenDoor":
+					return false;
+				case "class Cristal":
+					return false;
+					default:
+					return true;
+					}
+				}
+			
+			
 		case 3: //left X-1
 			
-			break;
+			if (demon.getX()==0) {
+				return false;
+			}
+			if(map.getCell(demon.getX()-1,demon.getY()).getBlocking()) {
+				return false;
+						}
+			
+			
+			else {
+				switch (map.getCell(demon.getX()-1,demon.getY()).getClass().toString()) {
+				case "class Player":
+					this.finished = true;
+					System.out.println("got munched");
+					return true;
+				case "class OpenDoor":
+					return false;
+				case "class Cristal":
+					return false;
+					default:
+					return true;
+					}
+				}
+			
+			
 		case 4: //right X+1
+			if (demon.getX()==19) {
+				return false;
+			}
+			else if(map.getCell(demon.getX()+1,demon.getY()).getBlocking()) {
+				return false;
+						}
 			
-			break;
 			
+			else {
+				switch (map.getCell(demon.getX()+1,demon.getY()).getClass().toString()) {
+				case "class Player":
+					this.finished = true;
+					System.out.println("got munched");
+					return true;
+				case "class OpenDoor":
+					return false;
+				case "class Cristal":
+					return false;
+					default:
+					return true;
+				}
+			}
 			
-			
-			
-			default:
-		
-		
-		
-		}
-		
-		
-		
-		
-		return false;
+				default:
+				return false;
+			}	
 	}
 
 	@Override
-	public void display() {
+	public void display(Map map) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -118,12 +250,15 @@ public class Controller implements IController{
 	@Override
 	public void updateModel(Map map) { //TO DO
 		int n = map.getnDemon()-1; //Demonlist's 1st demon is number 0, not 1
-		for(int i = 0; i <n; i++) { 
-			double r = Math.random()%5; //generate a random movement
+		
+		for(int i = 0; i <= n; i++) { 
+			
+			double r = (Math.random()*10)%5; //generate a random movement
+			
 			switch ((int)r) {
-			
-			
 			case 1: //moveUp (Y-1)
+				
+				
 				if (this.chekAI(map,map.getDemon(i), 1)){
 					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
 					map.getDemon(i).setY(map.getDemon(i).getY()-1);
@@ -135,6 +270,7 @@ public class Controller implements IController{
 				
 				break;
 			case 2: //moveDown (Y+1)
+				
 				if (this.chekAI(map,map.getDemon(i), 2 )){
 				map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
 				map.getDemon(i).setY(map.getDemon(i).getY()+1);
@@ -175,67 +311,7 @@ public class Controller implements IController{
 
 	
 
-	@Override
-	public Map createMap(String mapString) {   //Done
-		// TODO Auto-generated method stub
-		Map map = new Map();
-		
-		StringReader sr = new StringReader(mapString);
-		for(int Y = 0; Y<13; Y++ ) { //
-			
-		for(int X = 0;X<21;X++) { 
-			
-			try {
-				switch ((char)sr.read()) {
-				case ';':
-					break;
-				case 'O':
-					map.setCell(X,Y,new BallWall());
-					break;
-				case '-':
-					map.setCell(X,Y,new XWall());
-					break;
-				case 'I':
-					map.setCell(X,Y,new YWall());
-					break;
-				case '1':
-					map.setCell(X,Y,new Gold());
-					break;
-				case 'D':
-					map.setCell(X,Y,new Demon(X,Y));
-					map.setnDemon(map.getnDemon()+1);
-					break;
-				case 'Q':
-					map.setCell(X,Y,new Cristal());
-					break;
-				case 'Y':
-					map.setCell(X,Y,new CloseDoor());
-					break;
-				case '@':
-					map.setLorann(new Player(X,Y));
-					map.setCell(X, Y,map.getLorann() ); //PlaceHolder, Lorann needs to be instantiated earlier
-					break;
-				case '+':
-					map.setCell(X,Y,new Grave());
-					break;
-				case 'e':
-					map.setCell(X,Y,new Ground());
-					break;
-					
-				default:
-					map.setCell(X,Y,new Ground());
-					
-}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}
-		}
-		
-		return map;
-	}
-
+	
 	
 	@Override
 	public void lost() { //TO DO

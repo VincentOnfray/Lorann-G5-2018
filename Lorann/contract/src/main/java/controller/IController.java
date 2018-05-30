@@ -12,7 +12,7 @@ public interface IController {
 	public void play(String mapchoice) throws SQLException;
 	public Map createMap(String mapString);
 	public boolean chekAI(Map map,Demon demon ,int i); //checks if AI movement is deeadly to Lorann, then if it is possible
-	public void display(); 				//updates the visual Display
+	public void display(Map map); 				//updates the visual Display
 	public void updateModel(Map map);		 	//updates the logical model of the game
 	public void lost();  				//triggers "lost" scenario
 	public void won();  				//triggers "Won" scenario
