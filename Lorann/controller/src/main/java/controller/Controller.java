@@ -277,7 +277,7 @@ public class Controller implements IController{
 	@Override
 	public void lost() { //TO DO
 		// TODO Auto-generated method stub
-		System.out.println("U died lel");
+		System.out.println("U ded lel");
 	}
 
 	@Override
