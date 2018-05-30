@@ -87,6 +87,7 @@ public class Controller implements IController{
 					break;
 				case '@':
 					map.setLorann(new Player(X,Y));
+					System.out.println(X +"  "+ Y);
 					map.setCell(X, Y,map.getLorann() ); //PlaceHolder, Lorann needs to be instantiated earlier
 					break;
 				case '+':
@@ -117,7 +118,7 @@ public class Controller implements IController{
 		this.display(map);
 		
 		try {
-			Thread.sleep(200);
+			Thread.sleep(20);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,112 +134,72 @@ public class Controller implements IController{
 	@Override
 	public boolean chekAI(Map map,Demon demon, int i) {
 		// TODO Auto-generated method stub
+		boolean possible = false;
 		String classe;
-		System.out.println("a demon is in " +demon.getX()+" "+demon.getY());
+		System.out.println(demon.getX()+" "+ demon.getY());
 		switch (i) {
-		case 1: //up Y-1
-			if (demon.getY()==0) {
-				return false;
+		case 1: //Y-1 up
+			if(demon.getY()>0) {
+				if(!map.getCell(demon.getX(),demon.getY()-1).getBlocking()) {
+					possible = true;
+					if(map.getLorann().getX() == demon.getX() && map.getLorann().getY()== demon.getY()-1) {
+						this.finished=true;
+						this.lost();
+					}else {}
+				}else {}
 			}
-			if(map.getCell(demon.getX(),demon.getY()-1).getBlocking()) {
-				return false;
-						}
+			else {}
 			
 			
-			else {
-				switch (map.getCell(demon.getX(),demon.getY()-1).getClass().toString()) {
-				case "class Player":
-					this.finished = true;
-					System.out.println("got munched");
-					return true;
-				case "class OpenDoor":
-					return false;
-				case "class Cristal":
-					return false;
-					default:
-					return true;
-					}
-				}
 			
 			
-		case 2://down  Y+1
-			if (demon.getY()==12) {
-				return false;
+			
+			break;
+		case 2: //Y+1 Down
+			
+			if(demon.getY()>0) {
+				if(!map.getCell(demon.getX(),demon.getY()+1).getBlocking()) {
+					possible = true;
+					if(map.getLorann().getX() == demon.getX() && map.getLorann().getY()== demon.getY()+1) {
+						this.lost();
+						this.finished=true;
+					}else {}
+				}else {}
 			}
-			if(map.getCell(demon.getX(),demon.getY()+1).getBlocking()) {
-				return false;
-						}
+			else {}
+			break;
 			
 			
-			else {
-				switch (map.getCell(demon.getX(),demon.getY()+1).getClass().toString()) {
-				case "class Player":
-					this.finished = true;
-					System.out.println("got munched");
-					return true;
-				case "class OpenDoor":
-					return false;
-				case "class Cristal":
-					return false;
-					default:
-					return true;
-					}
-				}
-			
-			
-		case 3: //left X-1
-			
-			if (demon.getX()==0) {
-				return false;
+		case 3: //X-1 gauche
+			if(demon.getY()>0) {
+				if(!map.getCell(demon.getX()-1,demon.getY()).getBlocking()) {
+					possible = true;
+					if(map.getLorann().getX() == demon.getX()-1 && map.getLorann().getY()== demon.getY()) {
+						this.lost();
+						this.finished=true;
+					}else {}
+				}else {}
 			}
-			if(map.getCell(demon.getX()-1,demon.getY()).getBlocking()) {
-				return false;
-						}
-			
-			
-			else {
-				switch (map.getCell(demon.getX()-1,demon.getY()).getClass().toString()) {
-				case "class Player":
-					this.finished = true;
-					System.out.println("got munched");
-					return true;
-				case "class OpenDoor":
-					return false;
-				case "class Cristal":
-					return false;
-					default:
-					return true;
-					}
-				}
-			
-			
-		case 4: //right X+1
-			if (demon.getX()==19) {
-				return false;
+			else {}
+			break;
+		case 4: //X+1 droite
+			if(demon.getY()>0) {
+				if(!map.getCell(demon.getX()+1,demon.getY()).getBlocking()) {
+					possible = true;
+					if(map.getLorann().getX() == demon.getX()+1 && map.getLorann().getY()== demon.getY()) {
+						this.lost();
+						this.finished=true;
+					}else {}
+				}else {}
 			}
-			else if(map.getCell(demon.getX()+1,demon.getY()).getBlocking()) {
-				return false;
-						}
+			else {}
+			break;
 			
 			
-			else {
-				switch (map.getCell(demon.getX()+1,demon.getY()).getClass().toString()) {
-				case "class Player":
-					this.finished = true;
-					System.out.println("got munched");
-					return true;
-				case "class OpenDoor":
-					return false;
-				case "class Cristal":
-					return false;
-					default:
-					return true;
-				}
-			}
-			
-				default:
-				return false;
-			}	
+		
+		}
+		return possible;
+		
 	}
 
 	@Override
@@ -316,13 +277,13 @@ public class Controller implements IController{
 	@Override
 	public void lost() { //TO DO
 		// TODO Auto-generated method stub
-		
+		System.out.println("U died lel");
 	}
 
 	@Override
 	public void won() { //TO DO
 		// TODO Auto-generated method stub
-		
+		System.out.println("Noice");
 	}
 	
 	
