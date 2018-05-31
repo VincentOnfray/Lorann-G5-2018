@@ -1,14 +1,28 @@
 package view;
 
 import javax.swing.JFrame;
-import java.awt.*;
+
 
 public class Frame extends JFrame {
 
-private static Panel panel = new Panel();
+
+	private static final long serialVersionUID = 1L;
+private static Panel[][] uIMap;
 	
   public Frame(){                
-
+	 this.uIMap = new Panel[20][13];
+	
+		
+	for(int Y = 0 ; Y<13 ; Y++) {
+		
+		for(int X = 0 ; X<20 ; X++) {
+			uIMap[X][Y] = new Panel(X,Y);
+			
+			this.add(uIMap[X][Y]);
+		
+		}
+	}
+	  
     this.setTitle("Lorann G5 TM");
 
     this.setSize(646, 413);
@@ -18,8 +32,6 @@ private static Panel panel = new Panel();
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     this.setResizable(false);
-    
-  	this.setContentPane(panel);
     
     this.setVisible(true);
     
@@ -35,11 +47,11 @@ private static Panel panel = new Panel();
   
   public static void afficher(int x, int y, String sprite) {
 
-	  	String lien = sprite;
-	    panel.setX(x*32);
+	  	uIMap[x][y].sprite = sprite;
+	    /*panel.setX(x*32);
 	    panel.setY(y*32);
 	 
 	    panel.sprite = lien; 
-	    panel.repaint();
+	    panel.repaint();*/
 	    }   
 }
