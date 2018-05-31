@@ -39,7 +39,7 @@ public class Controller implements IController{
 	public void play(String mapchoice) throws SQLException{
 		// TODO Auto-generated method stub
 		DAO etienne = new DAO();
-		Frame frame = new Frame();
+		
 		Map map = this.createMap(etienne.readMap(mapchoice));
 		while (!this.finished) {
 			this.loop(map);
@@ -277,7 +277,7 @@ public class Controller implements IController{
 	@Override
 	public void lost() { //TO DO
 		// TODO Auto-generated method stub
-		System.out.println("U ded lel");
+		System.out.println("U died lel");
 	}
 
 	@Override
