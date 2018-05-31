@@ -36,7 +36,7 @@ public class Factory {
 	public Grave newGrave() throws IOException {
 		return new Grave();
 	}
-	public Ground newGroung() throws IOException {
+	public Ground newGround() throws IOException {
 		return new Ground();
 	}
 }

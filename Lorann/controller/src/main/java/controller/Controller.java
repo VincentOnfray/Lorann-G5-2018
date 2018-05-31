@@ -83,7 +83,7 @@ public class Controller implements IController{
 					map.setCell(X,Y,fact.newGold());
 					break;
 				case 'D':
-					map.setDemon(map.getnDemon(), new Demon(X,Y));
+					map.setDemon(map.getnDemon(), new Demon(X,Y,map.getnDemon()+1));
 					map.setCell(X,Y,map.getDemon(map.getnDemon()));
 					map.setnDemon(map.getnDemon()+1);
 					break;
@@ -99,14 +99,14 @@ public class Controller implements IController{
 					map.setCell(X, Y,map.getLorann() ); //PlaceHolder, Lorann needs to be instantiated earlier
 					break;
 				case '+':
-					map.setCell(X,Y,fact.newGrave());
+					map.setCell(X,Y,fact.newGround());
 					break;
 				case 'e':
-					map.setCell(X,Y,fact.newGroung());
+					map.setCell(X,Y,fact.newGround());
 					break;
 					
 				default:
-					map.setCell(X,Y,fact.newGroung());
+					map.setCell(X,Y,fact.newGround());
 					
 }
 			} catch (IOException e) {
@@ -126,7 +126,7 @@ public class Controller implements IController{
 		this.display(map,frame.panel);
 		
 		try {
-			Thread.sleep(200);
+			Thread.sleep(20);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -153,16 +153,15 @@ public class Controller implements IController{
 					if(map.getLorann().getX() == demon.getX() && map.getLorann().getY()== demon.getY()-1) {
 						this.finished=true;
 						this.lost();
-					}else {}
+					}else if(map.getCell(demon.getX(),demon.getY()-1) instanceof Cristal) {
+						System.out.println("coo");
+						possible= false;
+						}
+					}
 				}else {}
-			}
-			else {}
-			
-			
-			
-			
-			
 			break;
+			
+			
 		case 2: //Y+1 Down
 			
 			if(demon.getY()>0) {
@@ -171,11 +170,15 @@ public class Controller implements IController{
 					if(map.getLorann().getX() == demon.getX() && map.getLorann().getY()== demon.getY()+1) {
 						this.lost();
 						this.finished=true;
-					}else {}
+								}else if(map.getCell(demon.getX(),demon.getY()+1) instanceof Cristal) {
+									possible= false;
+							}
+
+					}
 				}else {}
-			}
-			else {}
 			break;
+			
+			
 			
 			
 		case 3: //X-1 gauche
@@ -185,11 +188,16 @@ public class Controller implements IController{
 					if(map.getLorann().getX() == demon.getX()-1 && map.getLorann().getY()== demon.getY()) {
 						this.lost();
 						this.finished=true;
-					}else {}
+							}else if(map.getCell(demon.getX()-1,demon.getY()) instanceof Cristal) {
+								possible= false;
+						}
+					}
 				}else {}
-			}
-			else {}
 			break;
+			
+			
+			
+			
 		case 4: //X+1 droite
 			if(demon.getY()>0) {
 				if(!map.getCell(demon.getX()+1,demon.getY()).getBlocking()) {
@@ -197,18 +205,23 @@ public class Controller implements IController{
 					if(map.getLorann().getX() == demon.getX()+1 && map.getLorann().getY()== demon.getY()) {
 						this.lost();
 						this.finished=true;
-					}else {}
-				}else {}
-			}
-			else {}
+							}else if(map.getCell(demon.getX()+1,demon.getY())  instanceof Cristal) {
+								possible= false;
+						}
+					}
+				}
+					else {}
 			break;
+			}
 			
 			
+			
+			return possible;
 		
 		}
-		return possible;
 		
-	}
+		
+
 
 	@Override
 	public void display(Map map,Panel panel) {
