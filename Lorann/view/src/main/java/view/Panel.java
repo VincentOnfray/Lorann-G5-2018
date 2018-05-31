@@ -1,39 +1,35 @@
 package view;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import model.Element;
 
 public class Panel extends JPanel {
 	
-	String sprite;
-	int x;
-	int y;
+	JLabel[][] labels;
 
-	
-	public void paintComponent(Graphics g){
-		    try {
+	public Panel() {
+		labels = new JLabel[20][13];
+		this.setLayout(new GridBagLayout());
 		
-		      Image img = ImageIO.read(new File(sprite));
-		
-		      g.drawImage(img, x, y, this);
-		
-		    } catch (IOException e) {
-		    
-		      e.printStackTrace();
 	}
-  }
-
-public void setY(int y) {
-	// TODO Auto-generated method stub
-	this.y = y;
+	
+public void showMap(Element[][] tab) {
+	for(int x = 0; x < 20; x++) {
+		for(int y = 0; y< 13; y++) {
+			
+			GridBagConstraints c = new GridBagConstraints();
+			c.gridx = x;
+			c.gridy = y;
+			
+			JLabel label = new JLabel(new ImageIcon(tab[x][y].getSprite()));
+			this.add(label, c);
+		}
+	}
 }
 
-public void setX(int x) {
-	// TODO Auto-generated method stub
-	this.x =x;
-	}
+
 }

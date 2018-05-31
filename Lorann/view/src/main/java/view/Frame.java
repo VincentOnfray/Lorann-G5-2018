@@ -1,45 +1,28 @@
 package view;
 
 import javax.swing.JFrame;
-import java.awt.*;
+
 
 public class Frame extends JFrame {
-
-private static Panel panel = new Panel();
+		
+	Panel panel;
 	
-  public Frame(){                
+		  public Frame(){
 
-    this.setTitle("Lorann G5 TM");
+			    this.setTitle("Lorann G5");
 
-    this.setSize(646, 413);
+			    this.setSize(640, 416);
 
-    this.setLocationRelativeTo(null);               
+			    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
-    this.setResizable(false);
-    
-  	this.setContentPane(panel);
-    
-    this.setVisible(true);
-    
-    try {
-		Thread.sleep(1000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+			    this.setLocationRelativeTo(null);
+			    
+			    this.setResizable(false);
 
-  }
-  //Méthods
-  
-  public static void afficher(int x, int y, String sprite) {
-
-	  	String lien = sprite;
-	    panel.setX(x*32);
-	    panel.setY(y*32);
-	 
-	    panel.sprite = lien; 
-	    panel.repaint();
-	    }   
-}
+			    this.setVisible(true); 
+			    
+			    panel = new Panel();
+			    
+			    this.setContentPane(panel);
+		  }
+}			  
