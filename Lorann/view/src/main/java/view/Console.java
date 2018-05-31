@@ -56,8 +56,5 @@ public class Console {
 		 }
 		
 	}
-	public Console() {
-		System.out.println("sa reum");
-	}
 
 }
