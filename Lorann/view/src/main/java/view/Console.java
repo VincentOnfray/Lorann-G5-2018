@@ -28,7 +28,7 @@ public class Console {
 		 }
 		 else {
 			 System.out.println("random it is then");
-			 double r = Math.random()%5;
+			 double r = Math.random()*10%5;
 			 
 			 
 			 switch ((int)r){

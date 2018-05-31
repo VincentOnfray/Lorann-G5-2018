@@ -4,6 +4,7 @@ package view;
 import java.awt.Color;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import model.Element;
 
@@ -12,11 +13,13 @@ import javax.swing.JFrame;
 
 public class Frame extends JFrame {
 	   
-		public Panel panel;
+		private Panel panel;
 
           public Frame(Element[][] map){
         	  	
         	  	this.panel = new Panel(map);
+        	  	this.toFront();
+        	  	this.panel.setFocusable(true);
         	  
                 this.setTitle("Lorann G5");
 
@@ -32,5 +35,13 @@ public class Frame extends JFrame {
                 
                 this.setContentPane(panel);
 
+          }
+          
+          public Panel getPanel() {
+			return this.panel;
+        	  
+          }
+          public void setPanel(Panel panel) {
+        	  this.panel = panel;
           }
 }
