@@ -85,7 +85,7 @@ public class Controller implements IController{
 			e.printStackTrace();
 		}
 		this.updateModel(map);
-		
+		this.lorannControl.attemptMoveLeft();
 	}
 			
 
@@ -94,7 +94,7 @@ public class Controller implements IController{
 		// TODO Auto-generated method stub
 		boolean possible = false;
 		String classe;
-		System.out.println(demon.getX()+" "+ demon.getY());
+		//System.out.println(demon.getX()+" "+ demon.getY());
 		switch (i) {
 		case 1: //Y-1 up
 			if(demon.getY()>0) {
@@ -292,7 +292,6 @@ public class Controller implements IController{
 					break;
 				case '@':
 					map.setLorann(new Player(X,Y));
-					System.out.println(X +"  "+ Y);
 					map.setCell(X, Y,map.getLorann() );
 					break;
 				case '+':
