@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Image;
+
 public class MobileElement extends Element{
 	private int X;
 	private int Y;
@@ -34,7 +36,7 @@ public class MobileElement extends Element{
 	}
 	
 	
-	public MobileElement(String sprite, boolean blocking, boolean deadly, int X, int Y) {
+	public MobileElement(Image sprite, boolean blocking, boolean deadly, int X, int Y) {
 		super(sprite, blocking, deadly);
 		this.X = X;
 		this.Y = Y;

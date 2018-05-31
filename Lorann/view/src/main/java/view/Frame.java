@@ -1,36 +1,36 @@
 package view;
 
-<<<<<<< HEAD
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import model.Element;
+
 import javax.swing.JFrame;
 
 
 public class Frame extends JFrame {
-		
-	Panel panel;
-	
-		  public Frame(){
+	   
+		public Panel panel;
 
-			    this.setTitle("Lorann G5");
+          public Frame(Element[][] map){
+        	  	
+        	  	this.panel = new Panel(map);
+        	  
+                this.setTitle("Lorann G5");
 
-			    this.setSize(640, 416);
+                this.setSize(640, 416);
 
-			    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-			    this.setLocationRelativeTo(null);
-			    
-			    this.setResizable(false);
+                this.setLocationRelativeTo(null);
 
-			    this.setVisible(true); 
-			    
-			    panel = new Panel();
-			    
-			    this.setContentPane(panel);
-		  }
-}			  
-=======
-public class Frame {
-	
-	
+                this.setResizable(false);
 
+                this.setVisible(true);
+                
+                this.setContentPane(panel);
+
+          }
 }
->>>>>>> 02f6ea900517dbd63a5de69a2f3f37e5efcf0e19

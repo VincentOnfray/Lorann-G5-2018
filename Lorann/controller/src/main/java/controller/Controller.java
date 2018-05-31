@@ -1,8 +1,11 @@
 package controller;
 
+import java.awt.Graphics;
 import java.io.IOException;
 import java.io.StringReader;
 import java.sql.SQLException;
+
+import javax.swing.JFrame;
 
 import model.*;
 import model.dao.DAO;
@@ -39,10 +42,15 @@ public class Controller implements IController{
 	public void play(String mapchoice) throws SQLException{
 		// TODO Auto-generated method stub
 		DAO etienne = new DAO();
-		
 		Map map = this.createMap(etienne.readMap(mapchoice));
+		Frame frame = new Frame(map.getGrid());
+		
+
+		
+		
 		while (!this.finished) {
-			this.loop(map);
+			this.loop(map, frame);
+			
 		}
 		
 		
@@ -114,11 +122,11 @@ public class Controller implements IController{
 
 	
 	@Override 
-	public void loop(Map map) {//the main game loop
-		this.display(map);
+	public void loop(Map map, Frame frame) {//the main game loop
+		this.display(map,frame.panel);
 		
 		try {
-			Thread.sleep(20);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -203,7 +211,10 @@ public class Controller implements IController{
 	}
 
 	@Override
-	public void display(Map map) {
+	public void display(Map map,Panel panel) {
+		
+		panel.repaint();
+		
 		// TODO Auto-generated method stub
 		
 	}
@@ -221,7 +232,12 @@ public class Controller implements IController{
 				
 				
 				if (this.chekAI(map,map.getDemon(i), 1)){
-					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+					try {
+						map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					map.getDemon(i).setY(map.getDemon(i).getY()-1);
 					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), map.getDemon(i));
 				}
@@ -233,7 +249,12 @@ public class Controller implements IController{
 			case 2: //moveDown (Y+1)
 				
 				if (this.chekAI(map,map.getDemon(i), 2 )){
-				map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+				try {
+					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				map.getDemon(i).setY(map.getDemon(i).getY()+1);
 				map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), map.getDemon(i));}
 				
@@ -244,7 +265,12 @@ public class Controller implements IController{
 			case 3: //move Left (X-1)
 				
 				if (this.chekAI(map,map.getDemon(i), 3 )){
-					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+					try {
+						map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					map.getDemon(i).setX(map.getDemon(i).getX()-1);
 					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), map.getDemon(i));}
 					
@@ -256,7 +282,12 @@ public class Controller implements IController{
 			case 4:    //move right (X+1)
 
 				if (this.chekAI(map,map.getDemon(i), 4 )){
-					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+					try {
+						map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					map.getDemon(i).setX(map.getDemon(i).getX()+1);
 					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), map.getDemon(i));}
 					

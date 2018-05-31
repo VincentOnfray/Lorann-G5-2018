@@ -1,11 +1,13 @@
 package model;
 
+import java.awt.Image;
+
 public class Element {
-	private String sprite;
+	private Image sprite;
 	private boolean blocking;
 	private boolean deadly;
 	
-	public Element(String sprite, boolean blocking, boolean deadly) {
+	public Element(Image sprite, boolean blocking, boolean deadly) {
 		this.setSprite(sprite);
 		this.setBlocking(blocking);
 		this.setDeadly(deadly);
@@ -25,10 +27,10 @@ public class Element {
 	public void setDeadly(boolean deadly) {
 		this.deadly = deadly;
 	}
-	public String getSprite() {
+	public Image getSprite() {
 		return sprite;
 	}
-	public void setSprite(String sprite) {
+	public void setSprite(Image sprite) {
 		this.sprite = sprite;
 	}
 	
