@@ -1,24 +1,16 @@
 package view;
 
-
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import model.Element;
-
-import javax.swing.JFrame;
-
 
 public class Frame extends JFrame implements KeyListener{
 	   
 		private Panel panel;
 		private LastOrder last;
 
-          public Frame(Element[][] map){
+        public Frame(Element[][] map){
         	  	setFocusable(true);
         	  
               	addKeyListener(this);              	
