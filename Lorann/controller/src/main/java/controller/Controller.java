@@ -350,7 +350,7 @@ public class Controller implements IController{
 	
 	@Override
 	public void won() {
-		this. globalScore = this. globalScore +  this.lorannControl.getScore();
+		this. globalScore = this. globalScore +  (this.lorannControl.getScore()*2);
 		
 		try {
 			Thread.sleep(1000);
