@@ -122,7 +122,7 @@ public class Controller implements IController{
 			
 		case 2: //Y+1 Down
 			
-			if(demon.getY()<13) {
+			if(demon.getY()<12) {
 				if(!this.map.getCell(demon.getX(),demon.getY()+1).getBlocking()) {
 					possible = true;
 					if(this.map.getLorann().getX() == demon.getX() && this.map.getLorann().getY()== demon.getY()+1) {
@@ -351,7 +351,7 @@ public class Controller implements IController{
 	
 	@Override
 	public void won() {
-		System.out.println("Your Score: \n"+this.lorannControl.getScore());
+		System.out.println("Your Score: \n"+this.lorannControl.getScore()*2);
 		try {
 			this.map = this.createMap(etienne.readMap("7"));
 		} catch (SQLException e) {
@@ -360,6 +360,14 @@ public class Controller implements IController{
 		}
 		this.frame.getPanel().setMap(this.map.getGrid());
 		this.frame.getPanel().repaint();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+	}
+		this.frame.setVisible(false);
 	}
 	
 	@Override
@@ -374,6 +382,13 @@ public class Controller implements IController{
 		}
 		this.frame.getPanel().setMap(this.map.getGrid());
 		this.frame.getPanel().repaint();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.frame.setVisible(false);
 	}
 
 	

@@ -26,7 +26,7 @@ public class Console {
 		 else if(choice.contains("1")) {
 			 return "1";
 		 }
-		 else if(choice.contains("Pacific Lorann")) {
+		 else if(choice.contains("Pacific")) {
 			 return "6";
 		 }
 		 else if(choice.contains("bruh")) {
