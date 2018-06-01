@@ -11,6 +11,6 @@ public class BallWall extends Obstacle{
 	public BallWall() throws IOException {
 		
 		super(ImageIO.read(new File(new File("").getAbsolutePath()+"/sprite/bone.png")));
-		
+		System.out.println(new File("").getAbsolutePath());
 	}
 }
