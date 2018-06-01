@@ -23,7 +23,7 @@ public class LorannController {
 		this.map = map;
 		this.out = false;
 		this.score=0;
-		//Démarrer le Thread et écouter?
+		//Start the Thread and Listen
 		
 	}
 	
