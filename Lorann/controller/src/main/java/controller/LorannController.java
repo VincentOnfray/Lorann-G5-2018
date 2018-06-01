@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 
 import model.CloseDoor;
 import model.Cristal;
+import model.Demon;
 import model.Gold;
 import model.Ground;
 import model.Map;
@@ -16,12 +17,12 @@ import view.Frame;
 public class LorannController {
 	private Map map;
 	private Boolean out;
-	
+	private int score;
 	
 	public LorannController(Map map) {
 		this.map = map;
 		this.out = false;
-		
+		this.score=0;
 		//Démarrer le Thread et écouter?
 		
 	}
@@ -52,11 +53,11 @@ public class LorannController {
 				else if(map.getCell(map.getLorann().getX(),map.getLorann().getY()-1) instanceof Gold) {
 					
 					
-					
+					this.score = this.score+100;
 					
 					}
 				this.moveUp();
-				}
+				} else if ((map.getCell(map.getLorann().getX(),map.getLorann().getY()-1) instanceof Demon)){this.score = this.score+100;}
 			}else {}
 	}
 	
@@ -86,11 +87,11 @@ public class LorannController {
 				else if(map.getCell(map.getLorann().getX(),map.getLorann().getY()+1) instanceof Gold) { //Check if the target  is a gold Purse (Does nothing right now)
 					
 					
-					
+					this.score = this.score+100;
 					
 					}
 				this.moveDown();
-				}
+				}else if ((map.getCell(map.getLorann().getX(),map.getLorann().getY()+1) instanceof Demon)){this.score = this.score+100;}
 			}else {}
 		
 	}
@@ -124,11 +125,11 @@ public class LorannController {
 				else if(map.getCell(map.getLorann().getX()-1,map.getLorann().getY()) instanceof Gold) {
 					
 					
-					
+					this.score = this.score+100;
 					
 					}
 				this.moveLeft();
-				}
+				}else if ((map.getCell(map.getLorann().getX()-1,map.getLorann().getY()) instanceof Demon)){this.score = this.score+100;}
 			}else {}
 		
 	}
@@ -158,11 +159,11 @@ public class LorannController {
 				else if(map.getCell(map.getLorann().getX()+1,map.getLorann().getY()) instanceof Gold) {
 					
 					
-					
+					this.score = this.score+100;
 					
 					}
 				this.moveRight();
-				}
+				}else if ((map.getCell(map.getLorann().getX()+1,map.getLorann().getY()) instanceof Demon)){this.score = this.score+100;}
 			}else {}
 		
 	}
@@ -256,5 +257,7 @@ public Boolean getOut() {
 	
 }
 
-
+public int getScore() {
+	return this.score;
+}
 }

@@ -32,6 +32,7 @@ public class Controller implements IController{
 	
 	
 	
+	
 	@Override
 	public void start() throws SQLException {
 		// TODO Auto-generated method stub
@@ -350,7 +351,7 @@ public class Controller implements IController{
 	
 	@Override
 	public void won() {
-		
+		System.out.println("Your Score: \n"+this.lorannControl.getScore());
 		try {
 			this.map = this.createMap(etienne.readMap("7"));
 		} catch (SQLException e) {
@@ -364,7 +365,7 @@ public class Controller implements IController{
 	@Override
 	public void lost() { //TO DO
 		
-		
+		System.out.println("Your Score: \n"+this.lorannControl.getScore()+"\n Still Lost though");
 		try {
 			this.map = this.createMap(etienne.readMap("6"));
 		} catch (SQLException e) {
