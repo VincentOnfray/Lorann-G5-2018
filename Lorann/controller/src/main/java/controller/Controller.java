@@ -352,7 +352,7 @@ public class Controller implements IController{
 	public void won() {
 		
 		try {
-			this.map = this.createMap(etienne.readMap("6"));
+			this.map = this.createMap(etienne.readMap("7"));
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -366,7 +366,7 @@ public class Controller implements IController{
 		
 		
 		try {
-			this.map = this.createMap(etienne.readMap("7"));
+			this.map = this.createMap(etienne.readMap("6"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

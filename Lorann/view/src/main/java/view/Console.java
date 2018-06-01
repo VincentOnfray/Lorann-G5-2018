@@ -27,7 +27,7 @@ public class Console {
 			 return "1";
 		 }
 		 else {
-			 System.out.println("random it is then");
+			
 			 double r = Math.random()*10%5;
 			 
 			 

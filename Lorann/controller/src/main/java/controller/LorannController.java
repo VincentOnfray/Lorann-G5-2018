@@ -2,12 +2,15 @@ package controller;
 
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+
 import model.CloseDoor;
 import model.Cristal;
 import model.Gold;
 import model.Ground;
 import model.Map;
 import model.OpenDoor;
+import model.Player;
 import view.Frame;
 
 public class LorannController {
@@ -24,7 +27,12 @@ public class LorannController {
 	}
 	
 	public void attemptMoveUp() {
-		
+		try {
+			map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/lorann_u.png").openStream()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(map.getLorann().getY()>0) {
 			if(!map.getCell(map.getLorann().getX(),map.getLorann().getY()-1).getBlocking()) {
 				
@@ -53,6 +61,12 @@ public class LorannController {
 	}
 	
 	public void attemptMoveDown() {
+		try {
+			map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/lorann_b.png").openStream()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(map.getLorann().getY()<12) {
 			if(!map.getCell(map.getLorann().getX(),map.getLorann().getY()+1).getBlocking()) { //Check if movement is possible (not blocking)
 				
@@ -83,6 +97,14 @@ public class LorannController {
 	
 	
 	public void attemptMoveLeft() {
+		
+		try {
+			map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/lorann_l.png").openStream()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		if(map.getLorann().getX()>0) {
 			if(!map.getCell(map.getLorann().getX()-1,map.getLorann().getY()).getBlocking()) {
 				
@@ -111,6 +133,12 @@ public class LorannController {
 		
 	}
 	public void attemptMoveRight() {
+		try {
+			map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/lorann_r.png").openStream()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(map.getLorann().getX()<19) {
 			if(!map.getCell(map.getLorann().getX()+1,map.getLorann().getY()).getBlocking()) {
 				
