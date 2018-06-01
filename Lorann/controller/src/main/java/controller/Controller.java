@@ -59,7 +59,7 @@ public class Controller implements IController{
 		while (!this.finished) {
 			this.loop(map, frame);
 			
-		}
+								}
 		
 		
 		}
@@ -79,13 +79,13 @@ public class Controller implements IController{
 		this.display();
 		
 		try {
-			Thread.sleep(500);
+			Thread.sleep(10);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.updateModel(map);
-		this.lorannControl.attemptMoveLeft();
+		//this.lorannControl.attemptMoveLeft();
 	}
 			
 
