@@ -267,8 +267,8 @@ public int getScore() {
 }
 
 public void hug() {
-	this.score = this.score+100;
-	System.out.println("Huggy one +100   ("+this.score+")");
+	this.score = this.score+150;
+	System.out.println("Huggy one +150   ("+this.score+")");
 }
 
 public void pickUpPurse() {

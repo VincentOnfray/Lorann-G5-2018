@@ -29,17 +29,16 @@ public class Controller implements IController{
 	private Frame frame;
 	private Map map;
 	private DAO etienne;
-	
-	
+	private String currentLVL;
+	private int globalScore;
 	
 	
 	@Override
 	public void start() throws SQLException {
 		// TODO Auto-generated method stub
-		
-		this.fact = new Factory();
-		
-		this.play( this.chooseMap()); //allows to choose map and start the game loop
+		this.globalScore = 0;		this.fact = new Factory();
+		this.currentLVL=this.chooseMap(); 
+		this.play(currentLVL); //allows to choose map and start the game loop
 		
 	}
 	
@@ -351,29 +350,94 @@ public class Controller implements IController{
 	
 	@Override
 	public void won() {
-		System.out.println("Your Score: \n"+this.lorannControl.getScore()*2);
+		this. globalScore = this. globalScore +  this.lorannControl.getScore();
+		
 		try {
-			this.map = this.createMap(etienne.readMap("7"));
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		this.frame.getPanel().setMap(this.map.getGrid());
-		this.frame.getPanel().repaint();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
+		}
+		switch (this.currentLVL){
+			case "1":
+				this.frame.dispose();
+			try {
+				this.currentLVL = "2";
+				this.play(this.currentLVL);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				break;
+			case "2":
+				this.frame.dispose();
+				try {
+					this.currentLVL = "3";
+					this.play(this.currentLVL);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					break;
+			case "3":
+				this.frame.dispose();
+				try {
+					this.currentLVL = "4";
+					this.play(this.currentLVL);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					break;
+			case "4":
+				this.frame.dispose();
+				try {
+					this.currentLVL = "5";
+					this.play(this.currentLVL);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					break;
+			case "5":
+				
+				System.out.println("Your Total Score: \n"+this.lorannControl.getScore()*2);
+				try {
+					this.map = this.createMap(etienne.readMap("7"));
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+				this.frame.getPanel().setMap(this.map.getGrid());
+				this.frame.getPanel().repaint();
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					
+			}
+				this.frame.dispose();
+				System.out.println("the end\nYour score:\n"+this.globalScore);
+				System.exit(0);
+				break;
+					default:
+						
+
+
 			
-	}
-		this.frame.setVisible(false);
-	}
+		}
+		
+		
+		
+		}
+		
+	
 	
 	@Override
 	public void lost() { //TO DO
-		
-		System.out.println("Your Score: \n"+this.lorannControl.getScore()+"\n Still Lost though");
+		this. globalScore = this. globalScore +  this.lorannControl.getScore();
+		System.out.println("Your Total Score : \n"+this.globalScore+"\nStill Lost though");
 		try {
 			this.map = this.createMap(etienne.readMap("6"));
 		} catch (SQLException e) {
@@ -388,7 +452,8 @@ public class Controller implements IController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.frame.setVisible(false);
+		this.frame.dispose();
+		System.exit(0);
 	}
 
 	
