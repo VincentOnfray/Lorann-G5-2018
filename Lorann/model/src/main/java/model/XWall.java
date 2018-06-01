@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class XWall extends Obstacle{
 	public XWall() throws IOException {
-		super(ImageIO.read(new File("C:/Users/blenn/Desktop/eXia/UE5/Projet/Lorann-G5-2018/Lorann/view/sprite/horizontal_bone.png")));
+		super(ImageIO.read(new File(new File("").getAbsolutePath()+"/sprite/horizontal_bone.png")));
 	}
 
 }

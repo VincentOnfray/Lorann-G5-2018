@@ -8,6 +8,6 @@ import javax.imageio.ImageIO;
 public class Cristal extends Object{
 	private boolean deadly = false;
 	public Cristal() throws IOException {
-		super(ImageIO.read(new File("C:/Users/blenn/Desktop/eXia/UE5/Projet/Lorann-G5-2018/Lorann/view/sprite/crystal_ball.png")),false);
+		super(ImageIO.read(new File(new File("").getAbsolutePath()+"/sprite/crystal_ball.png")),false);
 	}
 }

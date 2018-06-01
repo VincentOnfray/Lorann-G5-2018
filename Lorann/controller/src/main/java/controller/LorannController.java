@@ -34,7 +34,7 @@ public class LorannController {
 				
 				if(map.getCell(map.getLorann().getX(),map.getLorann().getY()-1) instanceof OpenDoor) {
 					
-					this.won();
+					this.exit();
 					
 					
 				}else if(map.getCell(map.getLorann().getX(),map.getLorann().getY()-1) instanceof Cristal) {
@@ -62,7 +62,7 @@ public class LorannController {
 				
 				if(map.getCell(map.getLorann().getX(),map.getLorann().getY()+1) instanceof OpenDoor) { //check if the target is the exit
 					
-					this.won();
+					this.exit();
 					
 				}else if(map.getCell(map.getLorann().getX(),map.getLorann().getY()+1) instanceof Cristal) { //Check if the target is the Crystal
 					this.unlock();
@@ -92,7 +92,7 @@ public class LorannController {
 				
 				if(map.getCell(map.getLorann().getX()-1,map.getLorann().getY()) instanceof OpenDoor) {
 					
-					this.won();
+					this.exit();
 					
 				}else if(map.getCell(map.getLorann().getX()-1,map.getLorann().getY()) instanceof Cristal) {
 					this.unlock();
@@ -120,7 +120,7 @@ public class LorannController {
 				
 				if(map.getCell(map.getLorann().getX()+1,map.getLorann().getY()) instanceof OpenDoor) {
 					
-					this.won();
+					this.exit();
 					
 				}else if(map.getCell(map.getLorann().getX()+1,map.getLorann().getY()) instanceof Cristal) {
 					this.unlock();
@@ -141,9 +141,9 @@ public class LorannController {
 	
 
 
-	public void won() { //TO DO
+	public void exit() { //TO DO
 		
-		System.out.println("Noice");
+		
 		this.out = true;
 	}
 	
@@ -225,6 +225,7 @@ private void unlock() {
 
 public Boolean getOut() {
 	return this.out;
+	
 }
 
 

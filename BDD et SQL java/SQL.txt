@@ -2,7 +2,7 @@
 
 CREATE TABLE `lorann`.`Niveau` ( `ID_Niveau` INT(20) NOT NULL AUTO_INCREMENT, `contenu` text(300) NOT NULL, PRIMARY KEY (`ID_Niveau`)) ENGINE = MyISAM;
 
-LOAD DATA LOCAL INFILE "C:/Users/Utilisateur/Documents/GitHub/Lorann-G5-2018/BDD et SQL java/sallesstandard.txt"
+LOAD DATA LOCAL INFILE "C:/Users/blenn/Desktop/eXia/UE5/Projet/Lorann-G5-2018/BDD et SQL java/sallesstandard.txt"
 INTO TABLE lorann.niveau
 FIELDS
 TERMINATED BY '\n'

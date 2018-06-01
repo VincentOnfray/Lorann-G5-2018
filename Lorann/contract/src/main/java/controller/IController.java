@@ -20,6 +20,7 @@ public interface IController {
 	public void updateModel(Map map);		 				//updates the logical model of the game
 	public void lost();  									//triggers "lost" scenario
 	String chooseMap();  									//Simple console menu, placeholder
-	void loop(Map map, Frame frame);    					//This is the game loop, as long as it runs, the game is not over
+	public void loop(Map map, Frame frame);    				//This is the game loop, as long as it runs, the game is not over
+	public void won();										//triggers "win" scenario
 	
 }

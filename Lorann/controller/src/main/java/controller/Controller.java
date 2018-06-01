@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.sql.SQLException;
 
@@ -27,6 +28,7 @@ public class Controller implements IController{
 	private LorannController lorannControl;
 	private Frame frame;
 	private Map map;
+	private DAO etienne;
 	
 	
 	
@@ -53,8 +55,9 @@ public class Controller implements IController{
 	public void play(String mapchoice) throws SQLException{
 		// TODO Auto-generated method stub
 		this.finished = false;
-		DAO etienne = new DAO();
+		this.etienne = new DAO();
 		this.map = this.createMap(etienne.readMap(mapchoice));
+		InputStream in = getClass().getResourceAsStream("/model/src/main/resources/picture");
 		this.frame = new Frame(map.getGrid());
 		this.lorannControl = new LorannController(map);
 
@@ -107,7 +110,7 @@ public class Controller implements IController{
 					if(this.map.getLorann().getX() == demon.getX() && this.map.getLorann().getY()== demon.getY()-1) {
 						this.finished=true;
 						this.lost();
-					}else if(this.map.getCell(demon.getX(),demon.getY()-1) instanceof Cristal || this.map.getCell(demon.getX(),demon.getY()-1)  instanceof Gold) {
+					}else if(this.map.getCell(demon.getX(),demon.getY()-1) instanceof Object && !(this.map.getCell(demon.getX(),demon.getY()-1) instanceof Ground)) { //Forbids the AI to erase objects such as Purses, openDoors or crystals
 						
 							possible= false;
 						}
@@ -124,7 +127,7 @@ public class Controller implements IController{
 					if(this.map.getLorann().getX() == demon.getX() && this.map.getLorann().getY()== demon.getY()+1) {
 						this.lost();
 						this.finished=true;
-								}else if(this.map.getCell(demon.getX(),demon.getY()+1) instanceof Cristal || this.map.getCell(demon.getX(),demon.getY()+1)  instanceof Gold) {
+								}else if(this.map.getCell(demon.getX(),demon.getY()+1) instanceof Object && !(this.map.getCell(demon.getX(),demon.getY()+1) instanceof Ground)) {
 									possible= false;
 						}
 					}
@@ -141,7 +144,7 @@ public class Controller implements IController{
 					if(this.map.getLorann().getX() == demon.getX()-1 && this.map.getLorann().getY()== demon.getY()) {
 						this.lost();
 						this.finished=true;
-							}else if(this.map.getCell(demon.getX()-1,demon.getY()) instanceof Cristal || this.map.getCell(demon.getX()-1,demon.getY())  instanceof Gold) {
+							}else if(this.map.getCell(demon.getX()-1,demon.getY()) instanceof Object && !(this.map.getCell(demon.getX()-1,demon.getY()) instanceof Ground)) {
 								possible= false;
 						}
 					}
@@ -158,7 +161,7 @@ public class Controller implements IController{
 					if(this.map.getLorann().getX() == demon.getX()+1 && this.map.getLorann().getY()== demon.getY()) {
 						this.lost();
 						this.finished=true;
-							}else if(this.map.getCell(demon.getX()+1,demon.getY())  instanceof Cristal || this.map.getCell(demon.getX()+1,demon.getY())  instanceof Gold) {
+							}else if(this.map.getCell(demon.getX()+1,demon.getY())  instanceof Object && !(this.map.getCell(demon.getX()+1,demon.getY()) instanceof Ground)) {
 								possible= false;
 						}
 					}
@@ -339,15 +342,37 @@ public class Controller implements IController{
 		}
 		if(this.lorannControl.getOut()) {
 			this.finished = true;
+			this.won();
 		}
 		else {		}
 		this.frame.setLast(LastOrder.IDLE);
 	}
 	
 	@Override
+	public void won() {
+		
+		try {
+			this.map = this.createMap(etienne.readMap("6"));
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		this.frame.getPanel().setMap(this.map.getGrid());
+		this.frame.getPanel().repaint();
+	}
+	
+	@Override
 	public void lost() { //TO DO
-		// TODO Auto-generated method stub
-		System.out.println("U died lel");
+		
+		
+		try {
+			this.map = this.createMap(etienne.readMap("7"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.frame.getPanel().setMap(this.map.getGrid());
+		this.frame.getPanel().repaint();
 	}
 
 	
