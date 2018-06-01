@@ -27,10 +27,13 @@ public class Controller implements IController{
 	private LorannController lorannControl;
 	private Frame frame;
 	private Map map;
+	
+	
+	
 	@Override
 	public void start() throws SQLException {
 		// TODO Auto-generated method stub
-		this.finished = false;
+		
 		this.fact = new Factory();
 		
 		this.play( this.chooseMap()); //allows to choose map and start the game loop
@@ -49,10 +52,11 @@ public class Controller implements IController{
 	@Override
 	public void play(String mapchoice) throws SQLException{
 		// TODO Auto-generated method stub
+		this.finished = false;
 		DAO etienne = new DAO();
 		this.map = this.createMap(etienne.readMap(mapchoice));
 		this.frame = new Frame(map.getGrid());
-		this.lorannControl = new LorannController(map,frame);
+		this.lorannControl = new LorannController(map);
 
 		
 		
@@ -79,13 +83,13 @@ public class Controller implements IController{
 		this.display();
 		
 		try {
-			Thread.sleep(10);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.updateModel(map);
-		//this.lorannControl.attemptMoveLeft();
+		
 	}
 			
 
@@ -114,7 +118,7 @@ public class Controller implements IController{
 			
 		case 2: //Y+1 Down
 			
-			if(demon.getY()>0) {
+			if(demon.getY()<19) {
 				if(!this.map.getCell(demon.getX(),demon.getY()+1).getBlocking()) {
 					possible = true;
 					if(this.map.getLorann().getX() == demon.getX() && this.map.getLorann().getY()== demon.getY()+1) {
@@ -131,7 +135,7 @@ public class Controller implements IController{
 			
 			
 		case 3: //X-1 gauche
-			if(demon.getY()>0) {
+			if(demon.getX()>0) {
 				if(!this.map.getCell(demon.getX()-1,demon.getY()).getBlocking()) {
 					possible = true;
 					if(this.map.getLorann().getX() == demon.getX()-1 && this.map.getLorann().getY()== demon.getY()) {
@@ -148,7 +152,7 @@ public class Controller implements IController{
 			
 			
 		case 4: //X+1 droite
-			if(demon.getY()>0) {
+			if(demon.getX()<12) {
 				if(!this.map.getCell(demon.getX()+1,demon.getY()).getBlocking()) {
 					possible = true;
 					if(this.map.getLorann().getX() == demon.getX()+1 && this.map.getLorann().getY()== demon.getY()) {
@@ -173,7 +177,7 @@ public class Controller implements IController{
 	@Override
 	public void updateModel(Map map) { //TO DO
 		int n = map.getnDemon()-1; //Demonlist's 1st demon is number 0, not 1
-		
+		this.checkMovement();
 		for(int i = 0; i <= n; i++) { 
 			
 			double r = (Math.random()*10)%5; //generate a random movement
@@ -315,6 +319,30 @@ public class Controller implements IController{
 		return map;
 	}
 
+	
+	@Override
+	public void checkMovement(){
+		switch (frame.getLast()) {
+		case UP:
+			this.lorannControl.attemptMoveUp();
+			break;
+		case DOWN:
+			this.lorannControl.attemptMoveDown();
+			break;
+		case LEFT:
+			this.lorannControl.attemptMoveLeft();
+			break;
+		case RIGHT:
+			this.lorannControl.attemptMoveRight();
+			break;
+		
+		}
+		if(this.lorannControl.getOut()) {
+			this.finished = true;
+		}
+		else {		}
+		this.frame.setLast(LastOrder.IDLE);
+	}
 	
 	@Override
 	public void lost() { //TO DO

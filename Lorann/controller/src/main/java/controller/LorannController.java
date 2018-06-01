@@ -12,12 +12,12 @@ import view.Frame;
 
 public class LorannController {
 	private Map map;
-	private Frame frame;
+	private Boolean out;
 	
 	
-	public LorannController(Map map, Frame frame) {
+	public LorannController(Map map) {
 		this.map = map;
-		this.frame= frame;
+		this.out = false;
 		
 		//Démarrer le Thread et écouter?
 		
@@ -28,13 +28,14 @@ public class LorannController {
 		if(map.getLorann().getY()>0) {
 			if(!map.getCell(map.getLorann().getX(),map.getLorann().getY()-1).getBlocking()) {
 				
-				this.moveUp();
+				
 				
 				
 				
 				if(map.getCell(map.getLorann().getX(),map.getLorann().getY()-1) instanceof OpenDoor) {
 					
 					this.won();
+					
 					
 				}else if(map.getCell(map.getLorann().getX(),map.getLorann().getY()-1) instanceof Cristal) {
 					this.unlock();
@@ -46,6 +47,7 @@ public class LorannController {
 					
 					
 					}
+				this.moveUp();
 				}
 			}else {}
 	}
@@ -54,7 +56,7 @@ public class LorannController {
 		if(map.getLorann().getY()<12) {
 			if(!map.getCell(map.getLorann().getX(),map.getLorann().getY()+1).getBlocking()) { //Check if movement is possible (not blocking)
 				
-				this.moveDown();
+			
 				
 				
 				
@@ -73,6 +75,7 @@ public class LorannController {
 					
 					
 					}
+				this.moveDown();
 				}
 			}else {}
 		
@@ -83,7 +86,7 @@ public class LorannController {
 		if(map.getLorann().getX()>0) {
 			if(!map.getCell(map.getLorann().getX()-1,map.getLorann().getY()).getBlocking()) {
 				
-				this.moveLeft();
+				
 				
 				
 				
@@ -102,6 +105,7 @@ public class LorannController {
 					
 					
 					}
+				this.moveLeft();
 				}
 			}else {}
 		
@@ -110,7 +114,7 @@ public class LorannController {
 		if(map.getLorann().getX()<19) {
 			if(!map.getCell(map.getLorann().getX()+1,map.getLorann().getY()).getBlocking()) {
 				
-				this.moveRight();
+				
 				
 				
 				
@@ -129,6 +133,7 @@ public class LorannController {
 					
 					
 					}
+				this.moveRight();
 				}
 			}else {}
 		
@@ -139,6 +144,7 @@ public class LorannController {
 	public void won() { //TO DO
 		
 		System.out.println("Noice");
+		this.out = true;
 	}
 	
 	
@@ -217,7 +223,9 @@ private void unlock() {
     }
 }
 
-
+public Boolean getOut() {
+	return this.out;
+}
 
 
 }
