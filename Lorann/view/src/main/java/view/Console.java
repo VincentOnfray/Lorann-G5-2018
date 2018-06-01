@@ -26,6 +26,12 @@ public class Console {
 		 else if(choice.contains("1")) {
 			 return "1";
 		 }
+		 else if(choice.contains("Pacific Lorann")) {
+			 return "6";
+		 }
+		 else if(choice.contains("bruh")) {
+			 return "7";
+		 }
 		 else {
 			
 			 double r = Math.random()*10%5;

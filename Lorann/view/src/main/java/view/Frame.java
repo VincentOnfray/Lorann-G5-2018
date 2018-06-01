@@ -11,7 +11,7 @@ public class Frame extends JFrame implements KeyListener{
 		private LastOrder last;
 
         public Frame(Element[][] map){
-        	  	setFocusable(true);
+        	  	
         	  
               	addKeyListener(this);              	
               	
@@ -33,6 +33,7 @@ public class Frame extends JFrame implements KeyListener{
                 
                 this.setContentPane(panel);
                 
+                setFocusable(true);
                 
                 this.setLast(LastOrder.IDLE);
           }

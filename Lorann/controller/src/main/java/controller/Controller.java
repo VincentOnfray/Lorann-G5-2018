@@ -122,7 +122,7 @@ public class Controller implements IController{
 			
 		case 2: //Y+1 Down
 			
-			if(demon.getY()<19) {
+			if(demon.getY()<13) {
 				if(!this.map.getCell(demon.getX(),demon.getY()+1).getBlocking()) {
 					possible = true;
 					if(this.map.getLorann().getX() == demon.getX() && this.map.getLorann().getY()== demon.getY()+1) {
@@ -156,7 +156,7 @@ public class Controller implements IController{
 			
 			
 		case 4: //X+1 droite
-			if(demon.getX()<12) {
+			if(demon.getX()<19) {
 				if(!this.map.getCell(demon.getX()+1,demon.getY()).getBlocking()) {
 					possible = true;
 					if(this.map.getLorann().getX() == demon.getX()+1 && this.map.getLorann().getY()== demon.getY()) {
@@ -265,7 +265,7 @@ public class Controller implements IController{
 	public Map createMap(String mapString) {   //Done
 		// TODO Auto-generated method stub
 		Map map = new Map();
-		
+		map.setnDemon(0);
 		StringReader sr = new StringReader(mapString);
 		for(int Y = 0; Y<13; Y++ ) { //
 			
