@@ -122,7 +122,7 @@ public class Controller implements IController{
 			
 		case 2: //Y+1 Down
 			
-			if(demon.getY()<19) {
+			if(demon.getY()<12) {
 				if(!this.map.getCell(demon.getX(),demon.getY()+1).getBlocking()) {
 					possible = true;
 					if(this.map.getLorann().getX() == demon.getX() && this.map.getLorann().getY()== demon.getY()+1) {
@@ -156,7 +156,7 @@ public class Controller implements IController{
 			
 			
 		case 4: //X+1 droite
-			if(demon.getX()<12) {
+			if(demon.getX()<19) {
 				if(!this.map.getCell(demon.getX()+1,demon.getY()).getBlocking()) {
 					possible = true;
 					if(this.map.getLorann().getX() == demon.getX()+1 && this.map.getLorann().getY()== demon.getY()) {
@@ -265,7 +265,7 @@ public class Controller implements IController{
 	public Map createMap(String mapString) {   //Done
 		// TODO Auto-generated method stub
 		Map map = new Map();
-		
+		map.setnDemon(0);
 		StringReader sr = new StringReader(mapString);
 		for(int Y = 0; Y<13; Y++ ) { //
 			
@@ -351,7 +351,7 @@ public class Controller implements IController{
 	
 	@Override
 	public void won() {
-		System.out.println("Your Score: \n"+this.lorannControl.getScore());
+		System.out.println("Your Score: \n"+this.lorannControl.getScore()*2);
 		try {
 			this.map = this.createMap(etienne.readMap("7"));
 		} catch (SQLException e) {
@@ -360,6 +360,14 @@ public class Controller implements IController{
 		}
 		this.frame.getPanel().setMap(this.map.getGrid());
 		this.frame.getPanel().repaint();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+	}
+		this.frame.setVisible(false);
 	}
 	
 	@Override
@@ -374,6 +382,13 @@ public class Controller implements IController{
 		}
 		this.frame.getPanel().setMap(this.map.getGrid());
 		this.frame.getPanel().repaint();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.frame.setVisible(false);
 	}
 
 	

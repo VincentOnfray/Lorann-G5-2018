@@ -52,12 +52,13 @@ public class LorannController {
 					}
 				else if(map.getCell(map.getLorann().getX(),map.getLorann().getY()-1) instanceof Gold) {
 					
-					
-					this.score = this.score+100;
-					
+					this.pickUpPurse();
 					}
 				this.moveUp();
-				} else if ((map.getCell(map.getLorann().getX(),map.getLorann().getY()-1) instanceof Demon)){this.score = this.score+100;}
+				} else if ((map.getCell(map.getLorann().getX(),map.getLorann().getY()-1) instanceof Demon)){
+					
+					this.hug();
+				}
 			}else {}
 	}
 	
@@ -87,11 +88,12 @@ public class LorannController {
 				else if(map.getCell(map.getLorann().getX(),map.getLorann().getY()+1) instanceof Gold) { //Check if the target  is a gold Purse (Does nothing right now)
 					
 					
-					this.score = this.score+100;
-					
+					this.pickUpPurse();
 					}
 				this.moveDown();
-				}else if ((map.getCell(map.getLorann().getX(),map.getLorann().getY()+1) instanceof Demon)){this.score = this.score+100;}
+				}else if ((map.getCell(map.getLorann().getX(),map.getLorann().getY()+1) instanceof Demon)){
+					this.hug();
+				}
 			}else {}
 		
 	}
@@ -125,11 +127,12 @@ public class LorannController {
 				else if(map.getCell(map.getLorann().getX()-1,map.getLorann().getY()) instanceof Gold) {
 					
 					
-					this.score = this.score+100;
-					
+					this.pickUpPurse();
 					}
 				this.moveLeft();
-				}else if ((map.getCell(map.getLorann().getX()-1,map.getLorann().getY()) instanceof Demon)){this.score = this.score+100;}
+				}else if ((map.getCell(map.getLorann().getX()-1,map.getLorann().getY()) instanceof Demon)){
+					this.hug();
+				}
 			}else {}
 		
 	}
@@ -159,11 +162,13 @@ public class LorannController {
 				else if(map.getCell(map.getLorann().getX()+1,map.getLorann().getY()) instanceof Gold) {
 					
 					
-					this.score = this.score+100;
+					this.pickUpPurse();
 					
 					}
 				this.moveRight();
-				}else if ((map.getCell(map.getLorann().getX()+1,map.getLorann().getY()) instanceof Demon)){this.score = this.score+100;}
+				}else if ((map.getCell(map.getLorann().getX()+1,map.getLorann().getY()) instanceof Demon)){
+					
+				}
 			}else {}
 		
 	}
@@ -260,4 +265,15 @@ public Boolean getOut() {
 public int getScore() {
 	return this.score;
 }
+
+public void hug() {
+	this.score = this.score+100;
+	System.out.println("Huggy one +100   ("+this.score+")");
+}
+
+public void pickUpPurse() {
+	this.score = this.score+100;
+	System.out.println("Picked up a purse +100 ("+this.score+")");
+}
+
 }
