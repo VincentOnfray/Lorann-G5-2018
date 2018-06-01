@@ -8,6 +8,6 @@ import javax.imageio.ImageIO;
 public class Ground extends Object{
 	
 	public Ground() throws IOException {
-		super(ImageIO.read(new File(new File("").getAbsolutePath()+"/sprite/void.png")),false);
+		super(ImageIO.read(Ground.class.getClass().getResource("/picture/void.png").openStream()),false);
 	}
 }

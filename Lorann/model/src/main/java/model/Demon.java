@@ -7,6 +7,6 @@ import javax.imageio.ImageIO;
 
 public class Demon extends MobileElement{
 	public Demon(int X, int Y, int n) throws IOException {
-		super(ImageIO.read(new File(new File("").getAbsolutePath()+"/sprite/monster_"+n+".png")),true,true, X,Y);
+		super(ImageIO.read(Demon.class.getClass().getResource("/picture/monster_"+n+".png").openStream()),true,true, X,Y);
 	}
 }

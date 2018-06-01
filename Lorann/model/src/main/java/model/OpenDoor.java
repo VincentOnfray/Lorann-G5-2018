@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class OpenDoor extends Object{
 	private boolean deadly = false;
 	public OpenDoor() throws IOException {
-		super (ImageIO.read(new File(new File("").getAbsolutePath()+"/sprite/gate_open.png")),false);
+		super (ImageIO.read(OpenDoor.class.getClass().getResource("/picture/gate_open.png").openStream()),false);
 		
 	}
 	

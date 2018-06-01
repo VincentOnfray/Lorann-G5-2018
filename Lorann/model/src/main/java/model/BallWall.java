@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,7 +11,7 @@ import javax.swing.ImageIcon;
 public class BallWall extends Obstacle{
 	public BallWall() throws IOException {
 		
-		super(ImageIO.read(new File(new File("").getAbsolutePath()+"/sprite/bone.png")));
-		System.out.println(new File("").getAbsolutePath());
+		super(ImageIO.read(BallWall.class.getClass().getResource("/picture/bone.png").openStream()));
+		
 	}
 }

@@ -8,6 +8,6 @@ import javax.imageio.ImageIO;
 public class Gold extends Object{
 	private boolean deadly = false;
 	public Gold() throws IOException {
-		super(ImageIO.read(new File(new File("").getAbsolutePath()+"/sprite/purse.png")),false);
+		super(ImageIO.read(Gold.class.getClass().getResource("/picture/purse.png").openStream()),false);
 	}
 }

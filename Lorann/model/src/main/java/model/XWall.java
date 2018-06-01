@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class XWall extends Obstacle{
 	public XWall() throws IOException {
-		super(ImageIO.read(new File(new File("").getAbsolutePath()+"/sprite/horizontal_bone.png")));
+		super(ImageIO.read(XWall.class.getClass().getResource("/picture/horizontal_bone.png").openStream()));
 	}
 
 }
