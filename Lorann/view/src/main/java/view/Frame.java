@@ -21,7 +21,7 @@ public class Frame extends JFrame implements KeyListener{
         	  
                 this.setTitle("Lorann G5");
 
-                this.setSize(640, 416);
+                this.setSize(640, 448);
 
                 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
