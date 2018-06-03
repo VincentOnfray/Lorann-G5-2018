@@ -7,9 +7,7 @@ import model.Element;
 
 public class Frame extends JFrame implements KeyListener{
 	   
-		/**
-	 * 
-	 */
+		
 	private static final long serialVersionUID = 1L;
 		private Panel panel;
 		private LastOrder last;
@@ -40,24 +38,38 @@ public class Frame extends JFrame implements KeyListener{
                 
                 this.toFront();
           }
-          
+         /**
+          * sets the last movement asked by the player 
+          * @param last
+          */
         public void setLast(LastOrder last) {
         	  this.last = last;
           }
-          
+        /**
+         * returns the last movement asked by the player  
+         * @return
+         */
         public LastOrder getLast() {
         	  return this.last;
           }
-          
+        /**
+         * returns the frame's Panel  
+         * @return
+         */
         public Panel getPanel() {
 			return this.panel;
         	  
           }
-          
+        /**
+         * Sets the frame's Panel  
+         * @param panel
+         */
         public void setPanel(Panel panel) {
         	  this.panel = panel;
           }
-
+        /**
+         * Defines the action when a key is pressed
+         */
 		@Override
 		public void keyPressed(KeyEvent evt) {
 										
@@ -77,13 +89,17 @@ public class Frame extends JFrame implements KeyListener{
         	this.setLast(LastOrder.DOWN);
         }
        }
-		
+		/**
+		 * Not used
+		 */
 		@Override
 		public void keyReleased(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		/**
+		 * Not used
+		 */
 		@Override
 
 		public void keyTyped(KeyEvent e) {

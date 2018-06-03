@@ -4,6 +4,9 @@ package controller;
 import java.io.IOException;
 import java.io.StringReader;
 import java.sql.SQLException;
+
+import javax.imageio.ImageIO;
+
 import model.*;
 import model.Object;
 import model.dao.DAO;
@@ -35,9 +38,9 @@ public class Controller implements IController{
 	}
 	
 	@Override
-	public String chooseMap() { //opens menu for user to choose what level to play
+	public String chooseMap() { 
 	
-		Console menu = new Console(); //simple Console menu for now, will be enhanced if time allows
+		Console menu = new Console(); 
 		
 		return menu.whatMap();
 	}
@@ -71,7 +74,7 @@ public class Controller implements IController{
 	}
 	
 	@Override 
-	public void loop() {//the main game loop
+	public void loop() {
 		this.display();
 		
 		try {
@@ -89,7 +92,7 @@ public class Controller implements IController{
 		
 		boolean possible = false;
 		
-		//System.out.println(demon.getX()+" "+ demon.getY());
+		
 		switch (i) {
 		case 1: //Y-1 Up
 			if(demon.getY()>0) {
@@ -324,7 +327,11 @@ public class Controller implements IController{
 			this.lorannControl.attemptMoveRight();
 			break;
 			default:
-		
+			try {
+				map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/lorann_u.png").openStream()));
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
 		}
 		if(this.lorannControl.getOut()) {
 			this.finished = true;

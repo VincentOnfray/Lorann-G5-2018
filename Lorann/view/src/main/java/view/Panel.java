@@ -8,9 +8,7 @@ import model.Element;
 
 public class Panel extends JPanel {
 
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 1L;	
     private Element[][] map;   
     
@@ -18,11 +16,16 @@ public class Panel extends JPanel {
     	this.map = map;
         this.setLayout(new GridBagLayout());
     }
-
+    /**
+	 * Sets the map to print on the panel
+	 */
     public void setMap(Element[][] map) {
     	this.map = map;
     }
 
+    /**
+     * paints the map currently bound to the panel
+     */
 public void paintComponent(Graphics g) {
 	    for(int x = 0; x < 20; x++) {
 	        for(int y = 0; y< 13; y++) {

@@ -6,7 +6,12 @@ import java.sql.*;
 
 
 public class DAO {
-
+	/**
+	 * Reads a map from the "lorann" DB, and returns it as a single String
+	 * @param map
+	 * @return 
+	 * @throws SQLException
+	 */
 	public String readMap(String map) throws SQLException { //cette methode cherche une carte 
 		
 
