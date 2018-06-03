@@ -19,8 +19,7 @@ public class Factory {
 	public BallWall newballWall() throws IOException {
 		return new BallWall();
 	}
-	
-	
+		
 	public OpenDoor newOpenDoor()  throws IOException {
 	
 			return new OpenDoor();
@@ -30,12 +29,20 @@ public class Factory {
 	public Cristal newCristal() throws IOException {
 		return new Cristal();
 	}
+	
 	public Gold newGold() throws IOException {
 		return new Gold();
 	}
-	
-	
+		
 	public Ground newGround() throws IOException {
 		return new Ground();
+	}
+	
+	public Demon newDemon(int X, int Y, int n) throws IOException{
+		return new Demon(X,Y,n);
+	}
+	
+	public Player newPlayer(int X, int Y) throws IOException{
+		return new Player(X,Y);
 	}
 }

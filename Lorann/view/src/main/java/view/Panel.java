@@ -2,15 +2,18 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
-import javax.swing.JLabel;
+
 import javax.swing.JPanel;
 import model.Element;
 
 public class Panel extends JPanel {
 
-    JLabel[][] labels;
-    private Element[][] map;
-   
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;	
+    private Element[][] map;   
+    
     public Panel(Element[][] map) {
     	this.map = map;
         this.setLayout(new GridBagLayout());

@@ -5,22 +5,22 @@ import java.sql.SQLException;
 
 import model.Demon;
 import model.Map;
-import view.Frame;
-import view.Panel;
+
+
 
 public interface IController {
 
 	
 	public void start() throws SQLException; 				//sets up for play() 
-	public void play(String mapchoice) throws SQLException; // Self explanatory
+	public void play(String mapchoice) throws SQLException; // play a single level
 	public Map createMap(String mapString);					//Generates the map, it the Heart of the Model
-	public boolean chekAI(Demon demon ,int i); 				//checks if AI movement is deadly to Lorann, then if it is possible
+	public boolean checkAI(Demon demon ,int i); 			//checks if AI movement is deadly to Lorann, then if it is possible
 	public void display();									//updates the visual Display
 	public void checkMovement();							//checks if a movement was ordered during the last loop()
-	public void updateModel(Map map);		 				//updates the logical model of the game
+	public void updateModel();		 						//updates the logical model of the game
 	public void lost();  									//triggers "lost" scenario
 	String chooseMap();  									//Simple console menu, placeholder
-	public void loop(Map map, Frame frame);    				//This is the game loop, as long as it runs, the game is not over
+	public void loop();    									//This is the game loop, as long as it runs, the game is not over
 	public void won();										//triggers "win" scenario
 	
 }

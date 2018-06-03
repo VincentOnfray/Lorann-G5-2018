@@ -10,7 +10,7 @@ public class Console {
 		Scanner sc = new Scanner(System.in);
 		
 		 choice = sc.nextLine() ;
-		
+		 sc.close();
 		 if(choice.contains("5")) {
 			 return "5";
 		 }

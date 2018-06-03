@@ -5,18 +5,7 @@ import java.awt.Image;
 public class MobileElement extends Element{
 	private int X;
 	private int Y;
-	public void MoveUp() {
-		
-	}
-	public void MoveDown() {
-		
-	}
-	public void MoveLeft() {
-		
-	}
-	public void MoveRigth() {
-		
-	}
+	
 	public MobileElement(){
 		
 	}
@@ -36,8 +25,8 @@ public class MobileElement extends Element{
 	}
 	
 	
-	public MobileElement(Image sprite, boolean blocking, boolean deadly, int X, int Y) {
-		super(sprite, blocking, deadly);
+	public MobileElement(Image sprite, boolean blocking, int X, int Y) {
+		super(sprite, blocking);
 		this.X = X;
 		this.Y = Y;
 	}

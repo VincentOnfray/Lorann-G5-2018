@@ -7,18 +7,21 @@ import model.Element;
 
 public class Frame extends JFrame implements KeyListener{
 	   
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		private Panel panel;
 		private LastOrder last;
 
         public Frame(Element[][] map){
         	  	
-        	  
+        		this.setFocusable(true);
+        		
               	addKeyListener(this);              	
               	
         	  	this.panel = new Panel(map);
-        	  	
-        	  	this.toFront();
-        	  
+        	  	        	  	        	  
                 this.setTitle("Lorann G5");
 
                 this.setSize(640, 448);
@@ -28,29 +31,30 @@ public class Frame extends JFrame implements KeyListener{
                 this.setLocationRelativeTo(null);
 
                 this.setResizable(false);
-
-                this.setVisible(true);
                 
                 this.setContentPane(panel);
-                
-                setFocusable(true);
-                
+                                                
                 this.setLast(LastOrder.IDLE);
+                
+                this.setVisible(true);
+                
+                this.toFront();
           }
           
-          public void setLast(LastOrder last) {
+        public void setLast(LastOrder last) {
         	  this.last = last;
           }
           
-          public LastOrder getLast() {
+        public LastOrder getLast() {
         	  return this.last;
           }
           
-          public Panel getPanel() {
+        public Panel getPanel() {
 			return this.panel;
         	  
           }
-          public void setPanel(Panel panel) {
+          
+        public void setPanel(Panel panel) {
         	  this.panel = panel;
           }
 
@@ -82,8 +86,8 @@ public class Frame extends JFrame implements KeyListener{
 
 		@Override
 
-			public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
+		public void keyTyped(KeyEvent e) {
+		
 			
 		}
 }
