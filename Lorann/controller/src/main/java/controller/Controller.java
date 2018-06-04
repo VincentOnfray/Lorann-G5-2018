@@ -15,7 +15,11 @@ import view.*;
 
 
 
-
+/**
+ * This is the main class of the code, it simply controls the program from begining to end, and allows comunication between Model and View
+ * @author blenn
+ *
+ */
 public class Controller implements IController{
 	
 	private boolean finished;

@@ -23,7 +23,6 @@ public interface IController {
 	 * @throws SQLException
 	 */
 	public void play(String mapchoice) throws SQLException;
-	
 	/**
 	 * Generates the object "map" through the use of a DAO
 	 * @param mapString

@@ -5,7 +5,11 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 import model.Element;
-
+/**
+ * The UI's Content
+ * @author blenn
+ *
+ */
 public class Panel extends JPanel {
 
     

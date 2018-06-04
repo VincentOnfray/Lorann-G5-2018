@@ -1,7 +1,11 @@
 package model;
 
 import java.io.IOException;
-
+/**
+ * Responsible for instantiating all objects fromp the Model
+ * @author blenn
+ *
+ */
 public class Factory {
 	/**
 	 * creates a new CloseDoor

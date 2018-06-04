@@ -1,7 +1,11 @@
 package model;
 
 import java.awt.Image;
-
+/**
+ * Regroups Demons and Player
+ * @author blenn
+ *
+ */
 public class MobileElement extends Element{
 	private int X;
 	private int Y;

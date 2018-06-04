@@ -1,7 +1,11 @@
 package model;
 
 import java.awt.Image;
-
+/**
+ * All objects in a level are Elements
+ * @author blenn
+ *
+ */
 public class Element {
 	
 	private Image sprite;

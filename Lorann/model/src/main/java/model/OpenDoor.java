@@ -1,6 +1,8 @@
 package model;
 
-
+/**
+ * Open Door object
+ */
 import java.io.IOException;
 
 import javax.imageio.ImageIO;

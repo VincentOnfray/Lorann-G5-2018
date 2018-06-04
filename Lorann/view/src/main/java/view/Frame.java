@@ -4,7 +4,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import model.Element;
-
+/**
+ * The game's User Interace 
+ * @author blenn
+ *
+ */
 public class Frame extends JFrame implements KeyListener{
 	   
 		

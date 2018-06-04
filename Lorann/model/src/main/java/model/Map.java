@@ -1,7 +1,11 @@
 package model;
 
 
-
+/**
+ * Logic model of the current level
+ * @author blenn
+ *
+ */
 public class Map {
 	private Element[][] grid;
 	private Demon[] demonList;

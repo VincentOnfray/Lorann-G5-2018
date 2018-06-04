@@ -13,7 +13,11 @@ import model.Map;
 import model.OpenDoor;
 import model.Player;
 
-
+/**
+ * controller dedicated to the Player Element
+ * @author blenn
+ *
+ */
 public class LorannController {
 	private Map map;
 	private Boolean out;

@@ -1,7 +1,11 @@
 package view;
 
 import java.util.Scanner;
-
+/**
+ * PlaceHolder Menu to choose the level
+ * @author blenn
+ *
+ */
 public class Console {
 	/**
 	 * placeHolder menu to choose a map

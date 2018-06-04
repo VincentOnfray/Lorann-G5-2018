@@ -4,7 +4,11 @@ package model.dao;
 
 import java.sql.*;
 
-
+/**
+ * Class used to access the DB
+ * @author blenn
+ *
+ */
 public class DAO {
 	/**
 	 * Reads a map from the "lorann" DB, and returns it as a single String
