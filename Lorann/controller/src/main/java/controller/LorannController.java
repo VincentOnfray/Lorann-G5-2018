@@ -80,7 +80,7 @@ public class LorannController {
 				
 				
 				
-				if(map.getCell(map.getLorann().getX(),map.getLorann().getY()+1) instanceof OpenDoor) { //check if the target is the exit
+				if(map.getCell(map.getLorann().getX(),map.getLorann().getY()+1) instanceof OpenDoor) { //Check if the target is the exit
 					
 					this.exit();
 					
