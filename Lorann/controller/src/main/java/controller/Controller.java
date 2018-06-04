@@ -61,10 +61,8 @@ public class Controller implements IController{
 		
 		
 		while (!this.finished) {
-			this.loop();
-			
-								}
-		
+			this.loop();			
+								}		
 		
 		}
 	
@@ -87,8 +85,7 @@ public class Controller implements IController{
 			
 			e.printStackTrace();
 		}
-		this.updateModel();
-		
+		this.updateModel();		
 	}
 			
 	@Override
