@@ -58,18 +58,14 @@ public class Controller implements IController{
 		
 		while (!this.finished) {
 			this.loop();
-			
 								}
-		
-		
+
 		}
 	
 	@Override
 	public void display() {
 		
 		this.frame.getPanel().repaint();
-		
-		
 		
 	}
 	
