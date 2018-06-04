@@ -265,14 +265,14 @@ public class LorannController {
     }
 }
 	/**
-	 * Returns if Lorann has escaped or not
+	 * returns if Lorann has escaped or not
 	 */
 	public Boolean getOut() {
 	return this.out;
 	
 }
 	/**
-	 * Returns the level's score
+	 * returns the level's score
 	 */
 	public int getScore() {
 	return this.score;
