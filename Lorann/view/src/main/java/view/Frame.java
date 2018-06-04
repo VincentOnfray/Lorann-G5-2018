@@ -7,18 +7,19 @@ import model.Element;
 
 public class Frame extends JFrame implements KeyListener{
 	   
+		
+	private static final long serialVersionUID = 1L;
 		private Panel panel;
 		private LastOrder last;
 
         public Frame(Element[][] map){
         	  	
-        	  
+        		this.setFocusable(true);
+        		
               	addKeyListener(this);              	
               	
         	  	this.panel = new Panel(map);
-        	  	
-        	  	this.toFront();
-        	  
+        	  	        	  	        	  
                 this.setTitle("Lorann G5");
 
                 this.setSize(640, 448);
@@ -28,32 +29,47 @@ public class Frame extends JFrame implements KeyListener{
                 this.setLocationRelativeTo(null);
 
                 this.setResizable(false);
-
-                this.setVisible(true);
                 
                 this.setContentPane(panel);
-                
-                setFocusable(true);
-                
+                                                
                 this.setLast(LastOrder.IDLE);
+                
+                this.setVisible(true);
+                
+                this.toFront();
           }
-          
-          public void setLast(LastOrder last) {
+         /**
+          * sets the last movement asked by the player 
+          * @param last
+          */
+        public void setLast(LastOrder last) {
         	  this.last = last;
           }
-          
-          public LastOrder getLast() {
+        /**
+         * returns the last movement asked by the player  
+         * @return
+         */
+        public LastOrder getLast() {
         	  return this.last;
           }
-          
-          public Panel getPanel() {
+        /**
+         * returns the frame's Panel  
+         * @return
+         */
+        public Panel getPanel() {
 			return this.panel;
         	  
           }
-          public void setPanel(Panel panel) {
+        /**
+         * Sets the frame's Panel  
+         * @param panel
+         */
+        public void setPanel(Panel panel) {
         	  this.panel = panel;
           }
-
+        /**
+         * Defines the action when a key is pressed
+         */
 		@Override
 		public void keyPressed(KeyEvent evt) {
 										
@@ -73,17 +89,21 @@ public class Frame extends JFrame implements KeyListener{
         	this.setLast(LastOrder.DOWN);
         }
        }
-		
+		/**
+		 * Not used
+		 */
 		@Override
 		public void keyReleased(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		/**
+		 * Not used
+		 */
 		@Override
 
-			public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
+		public void keyTyped(KeyEvent e) {
+		
 			
 		}
 }

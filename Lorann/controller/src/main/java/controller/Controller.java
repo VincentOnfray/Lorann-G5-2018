@@ -1,16 +1,11 @@
 package controller;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.sql.SQLException;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.imageio.ImageIO;
 
 import model.*;
 import model.Object;
@@ -29,82 +24,77 @@ public class Controller implements IController{
 	private Frame frame;
 	private Map map;
 	private DAO etienne;
-	
-	
+	private String currentLVL;
+	private int globalScore;
 	
 	
 	@Override
 	public void start() throws SQLException {
-		// TODO Auto-generated method stub
 		
-		this.fact = new Factory();
-		
-		this.play( this.chooseMap()); //allows to choose map and start the game loop
+		this.globalScore = 0;		this.fact = new Factory();
+		this.currentLVL=this.chooseMap(); 
+		this.play(currentLVL); //allows to choose map and start the game loop
 		
 	}
 	
 	@Override
-	public String chooseMap() { //opens menu for user to choose what level to play
+	public String chooseMap() { 
 	
-		Console menu = new Console(); //simple Console menu for now, will be enhanced if time allows
+		Console menu = new Console(); 
 		
 		return menu.whatMap();
 	}
-	
-	
+		
 	@Override
 	public void play(String mapchoice) throws SQLException{
-		// TODO Auto-generated method stub
+		
 		this.finished = false;
 		this.etienne = new DAO();
 		this.map = this.createMap(etienne.readMap(mapchoice));
-		InputStream in = getClass().getResourceAsStream("/model/src/main/resources/picture");
 		this.frame = new Frame(map.getGrid());
 		this.lorannControl = new LorannController(map);
 
 		
 		
 		while (!this.finished) {
-			this.loop(map, frame);
+			this.loop();
 			
 								}
 		
 		
 		}
 	
-
 	@Override
 	public void display() {
 		
 		this.frame.getPanel().repaint();
 		
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
 	@Override 
-	public void loop(Map map, Frame frame) {//the main game loop
+	public void loop() {
 		this.display();
 		
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		this.updateModel(map);
+		this.updateModel();
 		
 	}
 			
-
 	@Override
-	public boolean chekAI(Demon demon, int i) {
-		// TODO Auto-generated method stub
+	public boolean checkAI(Demon demon, int i) {
+		
 		boolean possible = false;
-		String classe;
-		//System.out.println(demon.getX()+" "+ demon.getY());
+		
+		
 		switch (i) {
-		case 1: //Y-1 up
+		case 1: //Y-1 Up
 			if(demon.getY()>0) {
 				if(!this.map.getCell(demon.getX(),demon.getY()-1).getBlocking()) {
 					possible = true;
@@ -138,7 +128,7 @@ public class Controller implements IController{
 			
 			
 			
-		case 3: //X-1 gauche
+		case 3: //X-1 left
 			if(demon.getX()>0) {
 				if(!this.map.getCell(demon.getX()-1,demon.getY()).getBlocking()) {
 					possible = true;
@@ -155,7 +145,7 @@ public class Controller implements IController{
 			
 			
 			
-		case 4: //X+1 droite
+		case 4: //X+1 right
 			if(demon.getX()<19) {
 				if(!this.map.getCell(demon.getX()+1,demon.getY()).getBlocking()) {
 					possible = true;
@@ -177,9 +167,8 @@ public class Controller implements IController{
 		
 		}
 				
-
 	@Override
-	public void updateModel(Map map) { //TO DO
+	public void updateModel() {
 		int n = map.getnDemon()-1; //Demonlist's 1st demon is number 0, not 1
 		this.checkMovement();
 		for(int i = 0; i <= n; i++) { 
@@ -190,11 +179,11 @@ public class Controller implements IController{
 			case 1: //moveUp (Y-1)
 				
 				
-				if (this.chekAI(map.getDemon(i), 1)){
+				if (this.checkAI(map.getDemon(i), 1)){
 					try {
 						map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
+					
 						e.printStackTrace();
 					}
 					map.getDemon(i).setY(map.getDemon(i).getY()-1);
@@ -207,11 +196,11 @@ public class Controller implements IController{
 				break;
 			case 2: //moveDown (Y+1)
 				
-				if (this.chekAI(map.getDemon(i), 2 )){
+				if (this.checkAI(map.getDemon(i), 2 )){
 				try {
 					map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				map.getDemon(i).setY(this.map.getDemon(i).getY()+1);
@@ -223,11 +212,11 @@ public class Controller implements IController{
 				break;
 			case 3: //move Left (X-1)
 				
-				if (this.chekAI(this.map.getDemon(i), 3 )){
+				if (this.checkAI(this.map.getDemon(i), 3 )){
 					try {
 						map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 					map.getDemon(i).setX(map.getDemon(i).getX()-1);
@@ -240,11 +229,11 @@ public class Controller implements IController{
 				
 			case 4:    //move right (X+1)
 
-				if (this.chekAI(map.getDemon(i), 4 )){
+				if (this.checkAI(map.getDemon(i), 4 )){
 					try {
 						map.setCell(map.getDemon(i).getX(),map.getDemon(i).getY(), new Ground());
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 					map.getDemon(i).setX(map.getDemon(i).getX()+1);
@@ -260,14 +249,13 @@ public class Controller implements IController{
 		return;
 	}
 
-
 	@Override
-	public Map createMap(String mapString) {   //Done
-		// TODO Auto-generated method stub
+	public Map createMap(String mapString) {  
+		
 		Map map = new Map();
 		map.setnDemon(0);
 		StringReader sr = new StringReader(mapString);
-		for(int Y = 0; Y<13; Y++ ) { //
+		for(int Y = 0; Y<13; Y++ ) { 
 			
 		for(int X = 0;X<21;X++) { 
 			
@@ -287,8 +275,8 @@ public class Controller implements IController{
 				case '1':
 					map.setCell(X,Y,fact.newGold());
 					break;
-				case 'D':
-					map.setDemon(map.getnDemon(), new Demon(X,Y,map.getnDemon()+1));
+				case 'D':					
+					map.setDemon(map.getnDemon(), fact.newDemon(X,Y,map.getnDemon()+1));
 					map.setCell(X,Y,map.getDemon(map.getnDemon()));
 					map.setnDemon(map.getnDemon()+1); //mobileElements need to be both
 					break;
@@ -298,8 +286,8 @@ public class Controller implements IController{
 				case 'Y':
 					map.setCell(X,Y,fact.newCloseDoor());
 					break;
-				case '@':
-					map.setLorann(new Player(X,Y));
+				case '@':					
+					map.setLorann(fact.newPlayer(X, Y));
 					map.setCell(X, Y,map.getLorann() );
 					break;
 				case '+':
@@ -314,7 +302,7 @@ public class Controller implements IController{
 					
 }
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+	
 				e.printStackTrace();
 			}
 	}
@@ -322,7 +310,6 @@ public class Controller implements IController{
 		
 		return map;
 	}
-
 	
 	@Override
 	public void checkMovement(){
@@ -339,7 +326,12 @@ public class Controller implements IController{
 		case RIGHT:
 			this.lorannControl.attemptMoveRight();
 			break;
-		
+			default:
+			try {
+				map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/lorann_u.png").openStream()));
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
 		}
 		if(this.lorannControl.getOut()) {
 			this.finished = true;
@@ -351,33 +343,95 @@ public class Controller implements IController{
 	
 	@Override
 	public void won() {
-		System.out.println("Your Score: \n"+this.lorannControl.getScore()*2);
-		try {
-			this.map = this.createMap(etienne.readMap("7"));
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		this.frame.getPanel().setMap(this.map.getGrid());
-		this.frame.getPanel().repaint();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-	}
-		this.frame.setVisible(false);
-	}
-	
-	@Override
-	public void lost() { //TO DO
+		this. globalScore = this. globalScore +  (this.lorannControl.getScore()*2);
 		
-		System.out.println("Your Score: \n"+this.lorannControl.getScore()+"\n Still Lost though");
 		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			
+			e1.printStackTrace();
+		}
+		switch (this.currentLVL){
+			case "1":
+				this.frame.dispose();
+			try {
+				this.currentLVL = "2";
+				this.play(this.currentLVL);
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+				break;
+			case "2":
+				this.frame.dispose();
+				try {
+					this.currentLVL = "3";
+					this.play(this.currentLVL);
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+					break;
+			case "3":
+				this.frame.dispose();
+				try {
+					this.currentLVL = "4";
+					this.play(this.currentLVL);
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+					break;
+			case "4":
+				this.frame.dispose();
+				try {
+					this.currentLVL = "5";
+					this.play(this.currentLVL);
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+					break;
+			case "5":
+				
+				System.out.println("Your Total Score: \n"+this.lorannControl.getScore()*2);
+				try {
+					this.map = this.createMap(etienne.readMap("7"));
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+				this.frame.getPanel().setMap(this.map.getGrid());
+				this.frame.getPanel().repaint();
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+				
+					e.printStackTrace();
+					
+			}
+				this.frame.dispose();
+				System.out.println("the end\nYour score:\n"+this.globalScore);
+				System.exit(0);
+				break;
+					default:
+						
+
+
+			
+		}
+		
+		
+		
+		}
+				
+	@Override
+	public void lost() {
+		this. globalScore = this. globalScore +  this.lorannControl.getScore();
+		System.out.println("Your Total Score : \n"+this.globalScore+"\nStill Lost though");
+		try {			
 			this.map = this.createMap(etienne.readMap("6"));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException e) {			
 			e.printStackTrace();
 		}
 		this.frame.getPanel().setMap(this.map.getGrid());
@@ -385,10 +439,10 @@ public class Controller implements IController{
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.frame.setVisible(false);
+		this.frame.dispose();
+		System.exit(0);
 	}
 
 	

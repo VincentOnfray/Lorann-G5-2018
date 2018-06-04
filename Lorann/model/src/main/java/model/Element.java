@@ -3,33 +3,50 @@ package model;
 import java.awt.Image;
 
 public class Element {
-	private Image sprite;
-	private boolean blocking;
-	private boolean deadly;
 	
-	public Element(Image sprite, boolean blocking, boolean deadly) {
+	private Image sprite;
+	
+	private boolean blocking;
+	
+	public Element(Image sprite, boolean blocking) {
 		this.setSprite(sprite);
 		this.setBlocking(blocking);
-		this.setDeadly(deadly);
+		
 	}
+			
 	public Element() {
 		
 	}
+	
+	/**
+	 * 
+	 * @return if the element is blocking or not
+	 */
 	public boolean getBlocking() {
 		return blocking;
 	}
+	
+	/**
+	 * sets if the element is blocking or not
+	 * @param blocking
+	 */
 	public void setBlocking(boolean blocking) {
 		this.blocking = blocking;
 	}
-	public boolean getDeadly() {
-		return deadly;
-	}
-	public void setDeadly(boolean deadly) {
-		this.deadly = deadly;
-	}
+	
+	
+	/**
+	 * returns the image of the element
+	 * @return
+	 */
 	public Image getSprite() {
 		return sprite;
 	}
+	
+	/**
+	 * sets the Element's sprite
+	 * @param sprite
+	 */
 	public void setSprite(Image sprite) {
 		this.sprite = sprite;
 	}

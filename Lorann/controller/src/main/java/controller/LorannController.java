@@ -12,26 +12,28 @@ import model.Ground;
 import model.Map;
 import model.OpenDoor;
 import model.Player;
-import view.Frame;
+
 
 public class LorannController {
 	private Map map;
 	private Boolean out;
 	private int score;
-	
+	/**
+	 * Initializes a new LorannController
+	 * @param map
+	 */
 	public LorannController(Map map) {
 		this.map = map;
 		this.out = false;
-		this.score=0;
-		//Start the Thread and Listen
-		
+		this.score=0;		
 	}
-	
+	/**
+	 * Checks if moving up is possible for lorann, as well as what consequence it has
+	 */
 	public void attemptMoveUp() {
 		try {
 			map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/lorann_u.png").openStream()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) {			
 			e.printStackTrace();
 		}
 		if(map.getLorann().getY()>0) {
@@ -61,12 +63,14 @@ public class LorannController {
 				}
 			}else {}
 	}
-	
+	/**
+	 * Checks if moving down is possible for lorann, as well as what consequence it has
+	 */
 	public void attemptMoveDown() {
 		try {
 			map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/lorann_b.png").openStream()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		if(map.getLorann().getY()<12) {
@@ -97,14 +101,15 @@ public class LorannController {
 			}else {}
 		
 	}
-	
-	
+	/**
+	 * Checks if moving left is possible for lorann, as well as what consequence it has
+	 */	
 	public void attemptMoveLeft() {
 		
 		try {
 			map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/lorann_l.png").openStream()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		
@@ -135,12 +140,17 @@ public class LorannController {
 				}
 			}else {}
 		
+		
+		
 	}
+	/**
+	 * Checks if moving right is possible for lorann, as well as what consequence it has
+	 */
 	public void attemptMoveRight() {
 		try {
 			map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/lorann_r.png").openStream()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		if(map.getLorann().getX()<19) {
@@ -172,16 +182,15 @@ public class LorannController {
 			}else {}
 		
 	}
-	
-
-
-	public void exit() { //TO DO
-		
-		
+	/**
+	 * triggered when Lorann gets to the open gate
+	 */
+	public void exit() { 				
 		this.out = true;
 	}
-	
-	
+	/**
+	 * Moves Lorann down
+	 */
 	private void moveDown() { //Y+1 moves Lorann down
 		map.setCell(map.getLorann().getX(),map.getLorann().getY()+1, map.getLorann());
 		try {
@@ -192,7 +201,9 @@ public class LorannController {
 		}
 			map.getLorann().setY(map.getLorann().getY()+1);
 	}
-	
+	/**
+	 * Moves Lorann left
+	 */
 	private void moveLeft() { //X-1 moves lorann left 
 		map.setCell(map.getLorann().getX()-1,map.getLorann().getY(), map.getLorann());
 		try {
@@ -203,7 +214,9 @@ public class LorannController {
 		}
 			map.getLorann().setX(map.getLorann().getX()-1);
 	}
-	
+	/**
+	 * Moves Lorann right
+	 */
 	private void moveRight(){ //X+1 moves Lorann Right
 		map.setCell(map.getLorann().getX()+1,map.getLorann().getY(), map.getLorann());
 		try {
@@ -214,7 +227,9 @@ public class LorannController {
 		}
 			map.getLorann().setX(map.getLorann().getX()+1);
 	}
-
+	/**
+	 * Moves Lorann up
+	 */
 	private void moveUp() { //Y-1 moves Lorann Up
 		map.setCell(map.getLorann().getX(),map.getLorann().getY()-1, map.getLorann());
 		try {
@@ -225,18 +240,11 @@ public class LorannController {
 		}
 			map.getLorann().setY(map.getLorann().getY()-1);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-private void unlock() {
+	/**
+	 * triggered when lorann picks up the crystal
+	 * opens the door
+	 */	
+	private void unlock() {
 	for(int X = 0; X < 20; X++) {
 		
         for(int Y = 0; Y< 13; Y++) {
@@ -245,7 +253,7 @@ private void unlock() {
         		try {
 					map.setCell(X, Y, new OpenDoor());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+			
 					e.printStackTrace();
 				}
         	}
@@ -256,22 +264,30 @@ private void unlock() {
         }
     }
 }
-
-public Boolean getOut() {
+	/**
+	 * returns if Lorann has escaped or not
+	 */
+	public Boolean getOut() {
 	return this.out;
 	
 }
-
-public int getScore() {
+	/**
+	 * returns the level's score
+	 */
+	public int getScore() {
 	return this.score;
 }
-
-public void hug() {
-	this.score = this.score+100;
-	System.out.println("Huggy one +100   ("+this.score+")");
+	/**
+	 *Triggers when Lorann is already next to a demon and moves towards it, adds 150 to the score
+	 */
+	public void hug() {
+	this.score = this.score+150;
+	System.out.println("Huggy one +150   ("+this.score+")");
 }
-
-public void pickUpPurse() {
+	/**
+	 * Triggers when Lorann picks a purse up, adds 100 to the score
+	 */
+	public void pickUpPurse() {
 	this.score = this.score+100;
 	System.out.println("Picked up a purse +100 ("+this.score+")");
 }

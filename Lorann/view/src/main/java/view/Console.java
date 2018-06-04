@@ -3,14 +3,17 @@ package view;
 import java.util.Scanner;
 
 public class Console {
-	
-	public String whatMap() { // placeholder menu to choose a map
+	/**
+	 * placeHolder menu to choose a map
+	 * @return String 
+	 */
+	public String whatMap() { 
 		String choice;
 		System.out.println("what level do you want to play? (1 to 5 or r for random)");
 		Scanner sc = new Scanner(System.in);
 		
 		 choice = sc.nextLine() ;
-		
+		 sc.close();
 		 if(choice.contains("5")) {
 			 return "5";
 		 }
