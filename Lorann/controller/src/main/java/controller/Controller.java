@@ -341,6 +341,7 @@ public class Controller implements IController{
 		this.frame.setLast(LastOrder.IDLE);
 	}
 	
+	
 	@Override
 	public void won() {
 		this. globalScore = this. globalScore +  (this.lorannControl.getScore()*2);
