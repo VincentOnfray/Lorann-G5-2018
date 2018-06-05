@@ -7,12 +7,17 @@ import static org.junit.Assert.assertEquals;
 
 public class TestLorannController {
 
-	int score = 0;
-	private Map map;
-	LorannController testC = new LorannController(map);
+	
+	
+	
 	
 	@Test
 	   public void testgetScore() {
-	      assertEquals(score,testC.getScore());
+
+		Map map = null;
+		LorannController testC = new LorannController(map);
+		
+		
+	      assertEquals(testC.getScore(), 0);
 	   }
 }
