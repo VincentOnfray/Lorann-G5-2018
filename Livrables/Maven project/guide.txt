@@ -1,6 +1,14 @@
 This guide is designed to guide you though the installation of group 5's Lorann code
-First open a new Worskspace in Eclipse IDE
+First install the DB from the provided DB script in the DB part of the Git
+
+open a new Worskspace in Eclipse IDE
+
+Got to window->preferences->java->installed JRE -> add -> find the location of your JDK 1.8
+
 then click file-> open project from the file system -> directory-> Find the "lorann" directory in the cloned github repository 
+
 then click finish, and wait for the project to fully deploy
+
 Finally, press the Black arrow right of Run -> Run Configurations -> java application -> search -> Main-main -> run
+
 You can start playing
