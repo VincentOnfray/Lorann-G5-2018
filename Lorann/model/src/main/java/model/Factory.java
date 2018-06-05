@@ -41,8 +41,7 @@ public class Factory {
 	 * @throws IOException
 	 */	
 	public OpenDoor newOpenDoor()  throws IOException {
-	
-			return new OpenDoor();
+		return new OpenDoor();
 		
 		}
 	/**
