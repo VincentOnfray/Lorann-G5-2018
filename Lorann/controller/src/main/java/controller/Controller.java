@@ -4,9 +4,7 @@ package controller;
 import java.io.IOException;
 import java.io.StringReader;
 import java.sql.SQLException;
-
 import javax.imageio.ImageIO;
-
 import model.*;
 import model.Object;
 import model.dao.DAO;
@@ -15,7 +13,11 @@ import view.*;
 
 
 
-
+/**
+ * This is the main control class
+ * @author blenn
+ *
+ */
 public class Controller implements IController{
 	
 	private boolean finished;
@@ -252,7 +254,7 @@ public class Controller implements IController{
 	@Override
 	public Map createMap(String mapString) {  
 		
-		Map map = new Map();
+		 this.map = new Map();
 		map.setnDemon(0);
 		StringReader sr = new StringReader(mapString);
 		for(int Y = 0; Y<13; Y++ ) { 
