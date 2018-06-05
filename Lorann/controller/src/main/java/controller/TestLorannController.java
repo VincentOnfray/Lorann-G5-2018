@@ -1,12 +1,11 @@
 package controller;
 
 import org.junit.Test;
-
 import model.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestJunit {
+public class TestLorannController {
 
 	int score = 0;
 	private Map map;

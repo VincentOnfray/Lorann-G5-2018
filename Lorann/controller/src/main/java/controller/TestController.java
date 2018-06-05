@@ -3,7 +3,7 @@ package controller;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-public class TestJunitB {
+public class TestController {
 	
 	int globalScore = 0;
 
