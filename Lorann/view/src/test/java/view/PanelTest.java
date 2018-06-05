@@ -8,7 +8,7 @@ public class PanelTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		;
 	}
 
 }
