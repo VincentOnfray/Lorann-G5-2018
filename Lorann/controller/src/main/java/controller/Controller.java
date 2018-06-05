@@ -448,13 +448,12 @@ public class Controller implements IController{
 		System.exit(0);
 	}
 
-	public int getGlobalScore() {
-		return globalScore;
-	}
-
-	public void setGlobalScore(int globalScore) {
-		this.globalScore = globalScore;
-	}
-
+	
+public void setMap(Map map){
+	this.map = map;
+}
+public void setFact(Factory fact) {
+	this.fact = fact;
+}
 	
 }
