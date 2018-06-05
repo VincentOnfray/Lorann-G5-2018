@@ -280,7 +280,7 @@ public class Controller implements IController{
 				case 'D':					
 					map.setDemon(map.getnDemon(), fact.newDemon(X,Y,map.getnDemon()+1));
 					map.setCell(X,Y,map.getDemon(map.getnDemon()));
-					map.setnDemon(map.getnDemon()+1); //mobileElements need to be both
+					map.setnDemon(map.getnDemon()+1);
 					break;
 				case 'Q':
 					map.setCell(X,Y,fact.newCristal());
