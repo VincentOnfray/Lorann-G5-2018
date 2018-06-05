@@ -16,6 +16,8 @@ public class ConsoleTest {
 		Robot robot = new Robot();
 	
 		robot.keyPress(KeyEvent.VK_NUMPAD1);
+		
+		
 		robot.keyPress(KeyEvent.VK_ENTER);
 		assertNotNull(console.whatMap());
 		
