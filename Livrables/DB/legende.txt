@@ -1,0 +1,12 @@
+O bone ball
+- horizontal bone
+| vertical bone
+1 purse 
+D demon
+Q crystal
+Y door
+@ Lorann spawn
+e ground
+
+
+
