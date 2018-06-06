@@ -88,6 +88,10 @@ public class Frame extends JFrame implements KeyListener{
         if(evt.getKeyCode() == KeyEvent.VK_DOWN) {
         	this.setLast(LastOrder.DOWN);
         }
+        if(evt.getKeyCode() == KeyEvent.VK_SPACE) {
+        	
+        	this.setLast(LastOrder.DASH);
+        }
        }
 		/**
 		 * Not used

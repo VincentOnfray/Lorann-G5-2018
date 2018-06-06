@@ -34,7 +34,7 @@ public class Controller implements IController{
 	public void start() throws SQLException {
 		
 		this.globalScore = 0;		this.fact = new Factory();
-		this.currentLVL=this.chooseMap(); 
+		this.currentLVL="1"; 
 		this.play(currentLVL); //allows to choose map and start the game loop
 		
 	}
@@ -80,7 +80,7 @@ public class Controller implements IController{
 		this.display();
 		
 		try {
-			Thread.sleep(100);
+			Thread.sleep(80);
 		} catch (InterruptedException e) {
 			
 			e.printStackTrace();
@@ -248,6 +248,13 @@ public class Controller implements IController{
 				default:					
 			}
 		}
+		if (this.lorannControl.getDashActivated()) {
+			try {
+				map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/blue.png").openStream()));
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
+		}
 		return;
 	}
 
@@ -317,16 +324,40 @@ public class Controller implements IController{
 	public void checkMovement(){
 		switch (frame.getLast()) {
 		case UP:
-			this.lorannControl.attemptMoveUp();
+			if (lorannControl.getDashActivated()) {
+				this.lorannControl.attemptDashUp();
+			}
+			else {this.lorannControl.attemptMoveUp();}
 			break;
 		case DOWN:
-			this.lorannControl.attemptMoveDown();
+			if (lorannControl.getDashActivated()) {
+				this.lorannControl.attemptDashDown();
+			}
+			else {this.lorannControl.attemptMoveDown();}
 			break;
 		case LEFT:
-			this.lorannControl.attemptMoveLeft();
+			if (lorannControl.getDashActivated()) {
+				this.lorannControl.attemptDashLeft();
+			}
+			else {this.lorannControl.attemptMoveLeft();}
 			break;
 		case RIGHT:
-			this.lorannControl.attemptMoveRight();
+			if (lorannControl.getDashActivated()) {
+				this.lorannControl.attemptDashRight();
+			}
+			else {this.lorannControl.attemptMoveRight();}
+			break;
+		case DASH:
+			if (this.lorannControl.getDashReady()&&!this.lorannControl.getDashActivated()) {
+			this.lorannControl.activateDash();
+			this.lorannControl.setDashReady(false);}
+			else {
+				try {
+					map.getLorann().setSprite(ImageIO.read(Player.class.getClass().getResource("/picture/fail.png").openStream()));
+				} catch (IOException e) {				
+					e.printStackTrace();
+				}
+			}
 			break;
 			default:
 			try {
@@ -397,7 +428,7 @@ public class Controller implements IController{
 					break;
 			case "5":
 				
-				System.out.println("Your Total Score: \n"+this.lorannControl.getScore()*2);
+			
 				try {
 					this.map = this.createMap(etienne.readMap("7"));
 				} catch (SQLException e) {

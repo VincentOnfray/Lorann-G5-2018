@@ -5,5 +5,7 @@ IDLE,
 UP,
 DOWN,
 LEFT,
+DASH,
 RIGHT;
+	
 }

@@ -10,6 +10,7 @@ import java.awt.event.*;
 public class ConsoleTest {
 
 	@Test
+	
 	public void test() throws AWTException {
 		
 		Console console = new Console();
@@ -21,5 +22,7 @@ public class ConsoleTest {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		assertNotNull(console.whatMap());
 		
-		}
+	
+	}
 }
+
